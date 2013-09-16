@@ -1,0 +1,17 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.3)
+PROJECT(001)
+SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/../cmake/;${CMAKE_MODULE_PATH}")
+INCLUDE(usr_config)
+
+SET(__dependencies__ "")
+SET(__custom_libs__ "")
+SET(__target__ 031_1)
+FILE(GLOB_RECURSE __src__ "${PROJECT_SOURCE_DIR}/${__target__}/" "${__target__}/*.cpp")
+
+MESSAGE(STATUS "${PROJECT_SOURCE_DIR}/${__target__}/")
+MESSAGE(STATUS ${__src__})
+
+ADD_EXECUTABLE(${__target__} ${__src__})
+# ADD_DEPENDENCIES(${__target__} ${__dependencies__})
+# TARGET_LINK_LIBRARIES(${__target__} ${__custom_libs__})
+
