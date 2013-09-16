@@ -25,62 +25,60 @@ QuadraticSolver::parse(std::string::iterator & first, const std::string::iterato
 	using namespace boost::spirit::qi;
 	using boost::phoenix::ref;
 
-	rule<std::string::iterator> num_2_expr, num_1_expr, num_0_expr;
-	rule<std::string::iterator> num_2_rexpr, num_1_rexpr, num_0_rexpr;
+	rule<std::string::iterator, double(), ascii::space_type> num_2_expr, num_1_expr, num_0_expr;
+	rule<std::string::iterator, double(), ascii::space_type> num_2_rexpr, num_1_rexpr, num_0_rexpr;
 	rule<std::string::iterator> expr, rexpr, func_expr;
 
 	num_2_expr = skip(ascii::space)[
 		(
-			double_[ref(this->x_2_) += _1] >>
-			char_("xX") >> lit("^2")
+			double_[_val = _1] >> -char_('*') >> char_("xX") >> lit("^2")
 		) | (
-			char_("xX") >> lit("^2")[ref(this->x_2_) += 1]
+			char_("xX") >> lit("^2")[_val = 1]
 		)];
 
 	num_1_expr = skip(ascii::space)[
 		(
-			double_[ref(this->x_1_) += _1] >>
-			char_("xX") >> -lit("^1")
+			double_[_val = _1] >> -char_('*') >> char_("xX") >> -lit("^1")
 		) | (
-			char_("xX")[ref(this->x_1_) += 1] >> -lit("^1")
+			char_("xX")[_val = 1] >> -lit("^1")
 		)];
 
 	num_0_expr = skip(ascii::space)[
-			double_[ref(this->x_0_) += _1] >>
-			-( char_("xX") >> lit("^0") )
+			double_[_val = _1] >> -( char_('*') >> char_("xX") >> lit("^0") )
 		];
 
+	/*
 	num_2_rexpr = skip(ascii::space)[
 		(
-			double_[ref(this->x_2_) -= _1] >>
-			char_("xX") >> lit("^2")
+			double_[ref(this->x_2_) -= _1] >> char_("xX") >> lit("^2")
 		) | (
 			char_("xX") >> lit("^2")[ref(this->x_2_) -= 1]
 		)];
 
 	num_1_rexpr = skip(ascii::space)[
 		(
-			double_[ref(this->x_1_) -= _1] >>
-			char_("xX") >> -lit("^1")
+			double_[ref(this->x_1_) -= _1] >> char_("xX") >> -lit("^1")
 		) | (
 			char_("xX")[ref(this->x_1_) -= 1] >> -lit("^1")
 		)];
 
 	num_0_rexpr = skip(ascii::space)[
-			double_[ref(this->x_0_) -= _1] >>
-			-( char_("xX") >> lit("^0") )
+			double_[ref(this->x_0_) -= _1] >> -( char_("xX") >> lit("^0") )
 		];
+	*/
 
 	expr = skip(ascii::space)[
-		( num_2_expr | num_1_expr | num_0_expr ) >> -( char_('+') >> expr )
-		];
+		( num_2_expr[ref(this->x_2_) += _1]
+		  | num_1_expr[ref(this->x_1_) += _1]
+		  | num_0_expr[ref(this->x_0_) += _1] )];
 
 	rexpr = skip(ascii::space)[
-		( num_2_rexpr | num_1_rexpr | num_0_rexpr ) >> -( char_('+') >> rexpr )
-		];
+		( num_2_expr[ref(this->x_2_) -= _1]
+		  | num_1_expr[ref(this->x_1_) -= _1]
+		  | num_0_expr[ref(this->x_0_) -= _1] )];
 
 	func_expr = skip(ascii::space)[
-		expr >> char_('=') >> rexpr
+		*expr >> char_('=') >> *rexpr
 		];
 	
 	bool r = phrase_parse(first, last, func_expr, ascii::space);
@@ -110,11 +108,14 @@ QuadraticSolver::calculate() {
 		}//if-else
 	} else {
 		// Quadratic
+
 		double delta = b*b - 4*a*c;
 		if(delta < 0)
 			throw std::logic_error("Equation " + this->equ_ + " delta < 0!");
 
-		if(b > 0) {
+		if(b == 0) {
+			x1 = x2 = -c/a;
+		} else if(b > 0) {
 			x1 = (-2*c)/(b + std::sqrt(delta));
 			x2 = (-b - std::sqrt(delta))/(2*a);
 		} else {
