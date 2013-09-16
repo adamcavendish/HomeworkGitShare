@@ -26,7 +26,6 @@ QuadraticSolver::parse(std::string::iterator & first, const std::string::iterato
 	using boost::phoenix::ref;
 
 	rule<std::string::iterator, double(), ascii::space_type> num_2_expr, num_1_expr, num_0_expr;
-	rule<std::string::iterator, double(), ascii::space_type> num_2_rexpr, num_1_rexpr, num_0_rexpr;
 	rule<std::string::iterator> expr, rexpr, func_expr;
 
 	num_2_expr = skip(ascii::space)[
@@ -46,26 +45,6 @@ QuadraticSolver::parse(std::string::iterator & first, const std::string::iterato
 	num_0_expr = skip(ascii::space)[
 			double_[_val = _1] >> -( char_('*') >> char_("xX") >> lit("^0") )
 		];
-
-	/*
-	num_2_rexpr = skip(ascii::space)[
-		(
-			double_[ref(this->x_2_) -= _1] >> char_("xX") >> lit("^2")
-		) | (
-			char_("xX") >> lit("^2")[ref(this->x_2_) -= 1]
-		)];
-
-	num_1_rexpr = skip(ascii::space)[
-		(
-			double_[ref(this->x_1_) -= _1] >> char_("xX") >> -lit("^1")
-		) | (
-			char_("xX")[ref(this->x_1_) -= 1] >> -lit("^1")
-		)];
-
-	num_0_rexpr = skip(ascii::space)[
-			double_[ref(this->x_0_) -= _1] >> -( char_("xX") >> lit("^0") )
-		];
-	*/
 
 	expr = skip(ascii::space)[
 		( num_2_expr[ref(this->x_2_) += _1]

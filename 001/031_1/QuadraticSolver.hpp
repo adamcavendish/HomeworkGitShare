@@ -19,13 +19,11 @@ public: // functions
 					}), this->equ_.end());
 	}
 
-	std::pair<double, double>
-	solve();
+	std::pair<double, double> solve();
 private: // functions
 	bool parse(std::string::iterator & first, const std::string::iterator last);
 
-	std::pair<double, double>
-	calculate();
+	std::pair<double, double> calculate();
 
 private: // member
 	std::string equ_;
