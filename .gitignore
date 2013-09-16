@@ -12,5 +12,11 @@
 *.la
 *.a
 
+# vim
+*.swp
+
 # FLENS library
 FLENS/
+
+# build directories
+*/build/

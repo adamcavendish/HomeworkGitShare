@@ -29,87 +29,59 @@ QuadraticSolver::parse(std::string::iterator & first, const std::string::iterato
 	rule<std::string::iterator> num_2_rexpr, num_1_rexpr, num_0_rexpr;
 	rule<std::string::iterator> expr, rexpr, func_expr;
 
-	num_2_expr =
+	num_2_expr = skip(ascii::space)[
 		(
-			*char_(' ') >> double_[ref(this->x_2_) += _1] >> *char_(' ') >>
-			char_("xX") >> lit("^2") >> *char_(' ')
+			double_[ref(this->x_2_) += _1] >>
+			char_("xX") >> lit("^2")
 		) | (
-			*char_(' ') >> char_("xX") >> lit("^2")[ref(this->x_2_) += 1] >>
-			*char_(' ')
-		);
+			char_("xX") >> lit("^2")[ref(this->x_2_) += 1]
+		)];
 
-	num_1_expr =
+	num_1_expr = skip(ascii::space)[
 		(
-			*char_(' ') >> double_[ref(this->x_1_) += _1] >> *char_(' ') >>
-			char_("xX") >> -lit("^1") >> *char_(' ')
+			double_[ref(this->x_1_) += _1] >>
+			char_("xX") >> -lit("^1")
 		) | (
-			*char_(' ') >> char_("xX")[ref(this->x_1_) += 1] >> -lit("^1") >>
-			*char_(' ')
-		);
+			char_("xX")[ref(this->x_1_) += 1] >> -lit("^1")
+		)];
 
-	num_0_expr =
-		(
-		/*
-			*char_(' ') >> double_[ref(this->x_0_) += _1] >> *char_(' ') >>
-			-( char_("xX") >> lit("^0") ) >> *char_(' ')
-		*/
+	num_0_expr = skip(ascii::space)[
 			double_[ref(this->x_0_) += _1] >>
 			-( char_("xX") >> lit("^0") )
-		);
+		];
 
-	num_2_rexpr =
+	num_2_rexpr = skip(ascii::space)[
 		(
-		/*
-			*char_(' ') >> double_[ref(this->x_2_) -= _1] >> *char_(' ') >>
-			char_("xX") >> lit("^2") >> *char_(' ')
-		*/
 			double_[ref(this->x_2_) -= _1] >>
 			char_("xX") >> lit("^2")
 		) | (
-		/*
-			*char_(' ') >> char_("xX") >> lit("^2")[ref(this->x_2_) -= 1] >>
-			*char_(' ')
-		*/
 			char_("xX") >> lit("^2")[ref(this->x_2_) -= 1]
-		);
+		)];
 
-	num_1_rexpr =
+	num_1_rexpr = skip(ascii::space)[
 		(
-		/*
-			*char_(' ') >> double_[ref(this->x_1_) -= _1] >> *char_(' ') >>
-			char_("xX") >> -lit("^1") >> *char_(' ')
-		*/
 			double_[ref(this->x_1_) -= _1] >>
 			char_("xX") >> -lit("^1")
 		) | (
-		/*
-			*char_(' ') >> char_("xX")[ref(this->x_1_) -= 1] >> -lit("^1") >>
-			*char_(' ')
-		*/
 			char_("xX")[ref(this->x_1_) -= 1] >> -lit("^1")
-		);
+		)];
 
-	num_0_rexpr =
-		(
-		/*
-			*char_(' ') >> double_[ref(this->x_0_) -= _1] >> *char_(' ') >>
-			-( char_("xX") >> lit("^0") ) >> *char_(' ')
-		*/
+	num_0_rexpr = skip(ascii::space)[
 			double_[ref(this->x_0_) -= _1] >>
 			-( char_("xX") >> lit("^0") )
-		);
+		];
 
-	expr =
+	expr = skip(ascii::space)[
 		( num_2_expr | num_1_expr | num_0_expr ) >> -( char_('+') >> expr )
-		;
+		];
 
-	rexpr =
+	rexpr = skip(ascii::space)[
 		( num_2_rexpr | num_1_rexpr | num_0_rexpr ) >> -( char_('+') >> rexpr )
-		;
+		];
 
-	func_expr =
-		skip(ascii::space)[expr >> char_('=') >> rexpr]
-		;
+	func_expr = skip(ascii::space)[
+		expr >> char_('=') >> rexpr
+		];
 	
 	bool r = phrase_parse(first, last, func_expr, ascii::space);
 	if(first != last)

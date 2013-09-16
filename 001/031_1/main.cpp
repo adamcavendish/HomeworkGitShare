@@ -13,6 +13,8 @@ int main(int argc, char * argv[])
 
 		std::string equ;
 		std::getline(std::cin, equ);
+		if(!std::cin)
+			return 0;
 
 		QuadraticSolver s(equ);
 		std::pair<double, double> ret;
