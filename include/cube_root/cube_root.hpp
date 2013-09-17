@@ -3,9 +3,6 @@
 // STL
 #include <limits>
 
-// numerical
-#include "../deriv/deriv.hpp"
-
 namespace numerical {
 
 /**

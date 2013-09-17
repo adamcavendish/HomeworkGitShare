@@ -4,8 +4,6 @@
 #include <stdexcept>
 // C-STL
 #include <cmath>
-// numerical
-#include "../deriv/deriv.hpp"
 
 namespace numerical {
 
