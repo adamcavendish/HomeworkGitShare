@@ -1,0 +1,109 @@
+#include <iostream>
+#include <limits>
+#include <stdexcept>
+#include <utility>
+#include <cmath>
+
+typedef long double Doub;
+
+template <typename T>
+Doub dfridr(T & func, const Doub x, const Doub h, Doub & err) {
+	const int ntab = 10;
+	const Doub con = 1.4, con2 = (con * con);
+	const Doub big = std::numeric_limits<Doub>::max();
+	const Doub safe = 2.0;
+
+	int i, j;
+	Doub errt, fac, hh, ans = 0;
+	Doub a[ntab][ntab];
+	
+	if(h == 0.0)
+		throw std::invalid_argument("h must be nonzero in dfridr!");
+
+	hh = h;
+	a[0][0] = (func(x+hh) - func(x-hh))/(2.0*hh);
+	err = big;
+	for(i = 1; i < ntab; ++i) {
+		hh /= con;
+		a[0][i] = (func(x+hh) - func(x-hh))/(2.0*hh);
+		fac = con2;
+
+		for(j = 1; j <= i; ++j) {
+			a[j][i] = (a[j-1][i]*fac - a[j-1][i-1])/(fac - 1.0);
+			fac = con2 * fac;
+			errt = std::max(std::abs(a[j][i] - a[j-1][i]), std::abs(a[j][i] - a[j-1][i-1]));
+			if(errt <= err) {
+				err = errt;
+				ans = a[j][i];
+			}//if
+		}//for
+		if(std::abs(a[i][i] - a[i-1][i-1]) >= safe * err)
+			break;
+	}//for
+	return ans;
+}//dfridr()
+
+Doub f1(Doub x) {
+	return (1.0001*x*x*x*x - 0.0005*x*x*x + 1000.1*x*x - 500.00001*x + 1);
+}//f1()
+
+Doub f2(Doub x) {
+	return (x*std::sin(x/2));
+}
+
+
+int main()
+{
+	Doub val, h, err;
+
+	val = 13;
+	h = 0.1;
+	std::cout << "f1(" << val << "):" << std::endl;
+	std::cout << dfridr(f1, val, h, err) << std::endl;
+	std::cout << "err: " << err << std::endl;
+
+	val = 0.0001;
+	h = 0.1;
+	std::cout << "f1(" << val << "):" << std::endl;
+	std::cout << dfridr(f1, val, h, err) << std::endl;
+	std::cout << "err: " << err << std::endl;
+
+	val = 13;
+	h = 100;
+	std::cout << "f1(" << val << "):" << std::endl;
+	std::cout << dfridr(f1, val, h, err) << std::endl;
+	std::cout << "err: " << err << std::endl;
+
+	val = 0.0001;
+	h = 100;
+	std::cout << "f1(" << val << "):" << std::endl;
+	std::cout << dfridr(f1, val, h, err) << std::endl;
+	std::cout << "err: " << err << std::endl;
+
+	val = 13;
+	h = 0.1;
+	std::cout << "f2(" << val << "), h = " << h << ":" << std::endl;
+	std::cout << dfridr(f2, val, h, err) << std::endl;
+	std::cout << "err: " << err << std::endl;
+
+	val = 0.0001;
+	h = 0.1;
+	std::cout << "f2(" << val << "), h = " << h << ":" << std::endl;
+	std::cout << dfridr(f2, val, h, err) << std::endl;
+	std::cout << "err: " << err << std::endl;
+
+	val = 13;
+	h = 10000;
+	std::cout << "f2(" << val << "), h = " << h << ":" << std::endl;
+	std::cout << dfridr(f2, val, h, err) << std::endl;
+	std::cout << "err: " << err << std::endl;
+
+	val = 0.0001;
+	h = 10000;
+	std::cout << "f2(" << val << "), h = " << h << ":" << std::endl;
+	std::cout << dfridr(f2, val, h, err) << std::endl;
+	std::cout << "err: " << err << std::endl;
+
+	return 0;
+}//main
+

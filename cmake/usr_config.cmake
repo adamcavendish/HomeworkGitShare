@@ -14,3 +14,7 @@ LINK_DIRECTORIES("/opt/boost_1_54_0/lib/")
 
 INCLUDE_DIRECTORIES(${__FLENS_DIR__})
 
+SET(__numerical_dir__ "${CMAKE_CURRENT_LIST_DIR}/../include/")
+FILE(GLOB_RECURSE __src__ "${CMAKE_CURRENT_LIST_DIR}/../include/" "${CMAKE_CURRENT_LIST_DIR}/../include/*.cpp")
+# ADD_LIBRARY(numerical ${__src__})
+
