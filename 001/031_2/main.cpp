@@ -17,7 +17,7 @@ std::vector<std::vector<std::string> >		g_table;
 
 int main(int argc, char * argv[])
 {
-	std::shared_ptr<TApplication> app(new TApplication("app", &argc, argv));
+	TApplication app("app", &argc, argv);
 
 	double result;
 	g_calc_list.resize(4);
@@ -111,7 +111,7 @@ int main(int argc, char * argv[])
 	cc->Update();
 	cc->Show();
 
-	app->Run();
+	app.Run();
 
 	return 0;
 }//main
