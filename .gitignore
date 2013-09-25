@@ -20,3 +20,6 @@ FLENS/
 
 # build directories
 */build/
+
+# Word Reports
+*.doc
