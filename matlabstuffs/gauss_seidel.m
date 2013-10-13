@@ -9,7 +9,7 @@ function [ X ] = gauss_seidel(A, B, X_init, tolerance, max_iter)
 %    - X is an N * 1 matrix: the gauss-seidel approximation
 %       to the solution of A*X = B
 
-N = length(B)
+N = length(B);
 
 for k = 1 : max_iter
     for j = 1:N
@@ -26,7 +26,7 @@ for k = 1 : max_iter
     relerr = err/(norm(X) + eps);
     X_init = X';
     
-    if (err < tolerance) | (relerr < tolerance)
+    if (err < tolerance) || (relerr < tolerance)
         break;
     end
 end
