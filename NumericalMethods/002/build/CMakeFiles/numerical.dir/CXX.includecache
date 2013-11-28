@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/include/cube_root/../deriv/deriv.hpp
+limits
+-
+
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/include/cube_root/cube_root.cpp
+cube_root.hpp
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/include/cube_root/cube_root.hpp
+stdexcept
+-
+cmath
+-
+../deriv/deriv.hpp
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/include/cube_root/../deriv/deriv.hpp
+
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/include/cube_root/cube_root.hpp
+limits
+-
+../deriv/deriv.hpp
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/include/cube_root/../deriv/deriv.hpp
+
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/include/deriv/deriv.cpp
+deriv.hpp
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/include/deriv/deriv.hpp
+limits
+-
+stdexcept
+-
+utility
+-
+cmath
+-
+
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/include/deriv/deriv.hpp
+limits
+-
+

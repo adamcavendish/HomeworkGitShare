@@ -1,0 +1,4 @@
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/002/build/CMakeFiles/069_4_cuberoot.dir
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/002/build/CMakeFiles/069_4_cuberoot_unity.dir
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/002/build/CMakeFiles/all_unity.dir
+/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/002/build/CMakeFiles/clean_cotire.dir

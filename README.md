@@ -1,3 +1,7 @@
+HomeworkGitShare
+============
+This repo is used to save and share my dirty homeworks
+
 NumericalToy
 ============
 

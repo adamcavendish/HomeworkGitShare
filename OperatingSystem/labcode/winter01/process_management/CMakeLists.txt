@@ -1,0 +1,17 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+SET(__TARGET_NAME__ main)
+
+SET(CMAKE_CXX_COMPILER g++-4.8)
+# SET(CMAKE_CXX_FLAGS "-g3 -std=c++11 -gdwarf-2")
+# SET(CMAKE_CXX_FLAGS "-std=c++11 -Wall -m64 -march=native -O3")
+SET(CMAKE_CXX_FLAGS "-g3 -std=c++11 -Wall -m64 -march=native -O3")
+
+FILE(GLOB_RECURSE ALL_CPP_FILES_SRC "*.h" "*.hpp" "*.cpp" "*.tcc" "*.cc")
+
+# PROJECT
+PROJECT(SIMPLE_PROJECT)
+MESSAGE(STATUS "Project: " ${PROJECT_NAME})
+
+ADD_EXECUTABLE(${__TARGET_NAME__} ${ALL_CPP_FILES_SRC})
+

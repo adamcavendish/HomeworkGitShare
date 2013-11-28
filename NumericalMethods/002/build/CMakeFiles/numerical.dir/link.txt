@@ -1,0 +1,2 @@
+/usr/bin/ar cr libnumerical.a  CMakeFiles/numerical.dir/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/include/deriv/deriv.cpp.o CMakeFiles/numerical.dir/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/include/cube_root/cube_root.cpp.o
+/usr/bin/ranlib libnumerical.a
