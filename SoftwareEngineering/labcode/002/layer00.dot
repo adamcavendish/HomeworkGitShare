@@ -1,0 +1,22 @@
+digraph G {
+	labelloc="t";
+	label="Layer 00 Graph";
+
+	System[label="Booking System" shape="ellipse" color="steelblue" style="filled"];
+	InformationChecker[label="Information\nChecker" shape="ellipse"];
+	ReservationChecker[label="Reservation\nChecker" shape="ellipse"];
+	TrainInfoChecker[label="Train\nInformation\nChecker" shape="ellipse"];
+
+	System->InformationChecker[label="Offer\nInformation"];
+	InformationChecker->System[label="Ticket\nReservation"];
+
+	System->ReservationChecker[label="Offer\nReservation\nInformation"];
+	ReservationChecker->System[label="Offer\nTicket"];
+
+	System->TrainInfoChecker[label="Offer\nTrain\nNumber"];
+	TrainInfoChecker->System[label="Train\nInformation"];
+
+	InformationChecker->TrainInfoChecker[label="Check\nSeats\nInformation"];
+	TrainInfoChecker->InformationChecker[label="Validation"];
+}
+

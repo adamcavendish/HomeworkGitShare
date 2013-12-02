@@ -1,0 +1,29 @@
+digraph G {
+	labelloc="t";
+	label="Layer 01 Graph";
+
+
+	subgraph SG_InformationChecker {
+		color="blue";
+		style="filled";
+		label="# Information Checker Layer 01";
+
+		InformationChecker[label="Information\nChecker" shape="ellipse" color="steelblue" style="filled"];
+		TrainInfoChecker[label="Train\nInformation\nChecker" shape="ellipse" color="steelblue" style="filled"];
+
+		PersonalInfoChecker[label="Personal\nInformation\nChecker" shape="ellipse"];
+		TrainResvInfoChecker[label="Train\nReservation\nInformation\nChecker" shape="ellipse"];
+		PersonalInfoRecorder[label="Personal\nInformation\nDataStore" shape="invhouse"];
+
+		InformationChecker->PersonalInfoChecker[label="Offer\nPersonal\nInformation"];
+		InformationChecker->TrainResvInfoChecker[label="Offer\nTrain\nReservation\nInformation"];
+		PersonalInfoChecker->InformationChecker[label="Validation"];
+		TrainResvInfoChecker->InformationChecker[label="Validation"];
+
+		TrainResvInfoChecker->TrainInfoChecker[label="Check\nSeats\nAvailability"];
+		TrainInfoChecker->TrainResvInfoChecker[label="Validation"];
+
+		InformationChecker->PersonalInfoRecorder[label="Record\nPersonal\nInformation"];
+	}
+}
+

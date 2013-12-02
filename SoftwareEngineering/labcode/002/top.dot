@@ -1,0 +1,16 @@
+digraph G {
+	labelloc="t";
+	label="Top Graph";
+
+	Customer[label="Customer" shape="box"];
+	Conductor[label="Conductor" shape="box"];
+	System[label="Booking System" shape="ellipse"];
+
+	Customer->System[label="Information"];
+	System->Customer[label="Ticket\nReservation"];
+	Customer->System[label="Ticket\nReservation"];
+	System->Customer[label="Ticket"];
+	Conductor->System[label="Train\nNumber"];
+	System->Conductor[label="Train\nInformation"];
+}
+
