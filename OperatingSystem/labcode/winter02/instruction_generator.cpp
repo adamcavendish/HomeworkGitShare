@@ -27,7 +27,8 @@ instruction_generator_impl::generate()  {
 	this->m_generate_ret.push_back(last_inst);
 
 	// geometric_distribution for forward jumper and backward jumper
-	std::geometric_distribution<> jmp_dist(0.02);
+	std::geometric_distribution<> jmp_forward_dist(0.01);
+	std::geometric_distribution<> jmp_backward_dist(0.01);
 	for(std::size_t i = 1; i < m_sz; ++i) {
 #ifndef NDEBUG
 		auto last_inst_rsv = last_inst;
@@ -44,21 +45,17 @@ instruction_generator_impl::generate()  {
 			break;
 		// jump forward, 25% of instructions
 		case 2:
-			last_inst += jmp_dist(this->m_engine) + c_jmp_min_inst_length;
-			if(last_inst >= m_sz) {
-				std::cout << "SOFT_ASSERT: jump forward out of range,"
-					" tune back to the last instruction" << std::endl;
-				last_inst = m_sz - 1;
-			}//if
+			last_inst += jmp_forward_dist(this->m_engine) + c_jmp_min_inst_length;
+			if(last_inst >= m_sz)
+				last_inst %= m_sz;
 			this->m_generate_ret.push_back(last_inst);
 			break;
 		// jump backward, 25% of instructions
 		case 3:
-			auto diff = jmp_dist(this->m_engine) + c_jmp_min_inst_length;
+			auto diff = jmp_backward_dist(this->m_engine) + c_jmp_min_inst_length;
 			if(diff > last_inst) {
-				std::cout << "SOFT_ASSERT: jump backward out of range,"
-					" tune back to the first instruction" << std::endl;
-				diff = last_inst;
+				diff = diff - last_inst - 1;
+				last_inst = m_sz;
 			}//if
 			last_inst -= diff;
 			this->m_generate_ret.push_back(last_inst);
@@ -70,9 +67,21 @@ instruction_generator_impl::generate()  {
 		} else if(last_inst_rsv == m_sz-1 && last_inst == 0) {
 			++this->m_sequential_count;
 		} else if(last_inst_rsv > last_inst) {
-			++this->m_jmp_forward_count;
+			if(last_inst_rsv - last_inst > 1000000) {
+				++this->m_jmp_backward_count;
+				++this->m_jmp_backward_map[(last_inst + m_sz - last_inst_rsv)];
+			} else {
+				++this->m_jmp_forward_count;
+				++this->m_jmp_forward_map[(last_inst_rsv - last_inst)];
+			}//if-else
 		} else if(last_inst_rsv < last_inst) {
-			++this->m_jmp_backward_count;
+			if(last_inst - last_inst_rsv > 1000000) {
+				++this->m_jmp_forward_count;
+				++this->m_jmp_forward_map[(m_sz - last_inst + last_inst_rsv)];
+			} else {
+				++this->m_jmp_backward_count;
+				++this->m_jmp_backward_map[(last_inst - last_inst_rsv)];
+			}//if-else
 		} else {
 			std::cout << "SOFT ASSERT DEBUG: unexpected instruction sequence: " << std::endl;
 			std::cout << "last: " << last_inst_rsv << std::endl;

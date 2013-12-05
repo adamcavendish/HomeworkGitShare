@@ -2,6 +2,7 @@
 // STL
 #include <vector>
 #include <random>
+#include <map>
 
 namespace impl {
 
@@ -42,15 +43,20 @@ private://functions
 		m_generate_ret(),
 		m_instruction_generate_size(c_instruction_generate_size),
 		m_rand(0, 3),
-		m_engine(m_rd()),
-		m_rd()
+		m_rd(),
+		m_engine(m_rd())
 	{}
 
+private://literals
+	/// @brief c_instruction_generate_size default instruction generation size = 1M of instructions
+	const std::size_t c_instruction_generate_size = 1024 * 1024;
 #ifndef NDEBUG
 public: //debug members
 	std::size_t m_sequential_count;
 	std::size_t m_jmp_forward_count;
 	std::size_t m_jmp_backward_count;
+	std::map<int, int> m_jmp_forward_map;
+	std::map<int, int> m_jmp_backward_map;
 #endif//!NDEBUG
 private://members
 	/// @brief shared data structure for the return of generate()
@@ -58,12 +64,8 @@ private://members
 	/// @brief m_instruction_generate_size defines the number of instructions generated
 	std::size_t m_instruction_generate_size;
 	std::uniform_int_distribution<std::size_t> m_rand;
-	std::default_random_engine m_engine;
 	std::random_device m_rd;
-
-private://literals
-	/// @brief c_instruction_generate_size default instruction generation size = 1M of instructions
-	const std::size_t c_instruction_generate_size = 1024 * 1024;
+	std::default_random_engine m_engine;
 };//class instruction_generator_impl
 
 }//namespace impl
