@@ -1,7 +1,7 @@
 /* >> mysql -u root -p school < ./test.sql */
 
 DROP DATABASE school;
-CREATE DATABASE school;
+CREATE DATABASE school CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 USE school;
 
 CREATE TABLE Colleges (
@@ -10,31 +10,31 @@ CREATE TABLE Colleges (
 	address VARCHAR(1024) NOT NULL,
 	telephone CHAR(8),
 	PRIMARY KEY(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE Students (
 	id CHAR(5) NOT NULL,
 	name CHAR(20) NOT NULL,
 	gender CHAR(4) NOT NULL,
-	birthday CHAR(10),
+	birthday DATE,
 	birthplace CHAR(255),
 	cellphone CHAR(11),
 	college_id CHAR(2),
 	PRIMARY KEY(id),
 	FOREIGN KEY(college_id) REFERENCES Colleges(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE Teachers (
 	id CHAR(4) NOT NULL,
 	name CHAR(255) NOT NULL,
 	gender CHAR(4) NOT NULL,
-	birthday CHAR(10),
+	birthday DATE,
 	title CHAR(30),
 	salary FLOAT(2),
 	college_id CHAR(2),
 	PRIMARY KEY(id),
 	FOREIGN KEY(college_id) REFERENCES Colleges(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE Courses (
 	id CHAR(8) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE Courses (
 	college_id CHAR(2),
 	PRIMARY KEY(id),
 	FOREIGN KEY(college_id) REFERENCES Colleges(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE OpenCourses (
 	semester CHAR(255) NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE OpenCourses (
 	PRIMARY KEY(semester, course_id, teacher_id),
 	FOREIGN KEY(course_id) REFERENCES Courses(id),
 	FOREIGN KEY(teacher_id) REFERENCES Teachers(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE CourseSelection (
 	student_id CHAR(4) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE CourseSelection (
 	FOREIGN KEY (student_id) REFERENCES Students(id),
 	FOREIGN KEY (course_id) REFERENCES Courses(id),
 	FOREIGN KEY (teacher_id) REFERENCES Teachers(id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE INDEX index01 ON Students (
 	college_id ASC,
