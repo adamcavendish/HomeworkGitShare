@@ -1,0 +1,33 @@
+digraph G {
+	labelloc="t";
+	label="Program Flow Chart";
+
+	start[label="(s)START" shape="box" style="rounded"];
+	end[label="(i)END" shape="box" style="rounded"];
+
+	input_data[label="(a)input data a,b,c" shape="box"];
+	check_triangle[label="(b)a+b>c && a+c>b && b+c>a &&\na>0 && b>0 && c>0" shape="diamond"];
+	check_isosceles[label="(c)a==b || a==c || b==c" shape="diamond"];
+	check_equilateral[label="(e)a==b && b==c" shape="diamond"];
+
+	result_ntriangle[label="(d)NOT A TRIANGLE!"];
+	result_gtriangle[label="(f)REGULAR TRIANGLE!"];
+	result_isosceles[label="(h)ISOSCELES TRIANGLE!"];
+	result_equilateral[label="(g)EQUILATERAL TRIANGLE!"];
+
+	start->input_data;
+	input_data->check_triangle;
+	check_triangle->check_isosceles[label="T"];
+	check_triangle->result_ntriangle[label="F"];
+	check_isosceles->check_equilateral[label="T"];
+	check_isosceles->result_gtriangle[label="F"];
+	check_equilateral->result_equilateral[label="T"];
+	check_equilateral->result_isosceles[label="F"];
+
+	result_ntriangle->end;
+	result_gtriangle->end;
+	result_isosceles->end;
+	result_equilateral->end;
+
+}//digraph G
+

@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <cstdint>
 
-int main()
+void test_instruction_generator()
 {
 	auto inst = instruction_generator().generate();
 
@@ -39,5 +39,11 @@ int main()
 	}//for
 	std::cout << "sumup count: " << counter << std::endl;
 #endif//!NDEBUG
+}//test_instruction_generator
+
+int main()
+{
+
+	return 0;
 }//main
 

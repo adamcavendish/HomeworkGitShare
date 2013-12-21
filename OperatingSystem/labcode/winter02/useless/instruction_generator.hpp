@@ -1,6 +1,7 @@
 #pragma once
 // STL
 #include <vector>
+#include <utility>
 #include <random>
 #include <map>
 
@@ -41,7 +42,8 @@ private://functions
 		m_jmp_backward_count(0),
 #endif//!NDEBUG
 		m_generate_ret(),
-		m_instruction_generate_size(c_instruction_generate_size),
+		m_instruction_generate_size(
+				instruction_generator_impl::c_instruction_generate_size),
 		m_rand(0, 3),
 		m_rd(),
 		m_engine(m_rd())
@@ -49,7 +51,7 @@ private://functions
 
 private://literals
 	/// @brief c_instruction_generate_size default instruction generation size = 1M of instructions
-	const std::size_t c_instruction_generate_size = 1024 * 1024;
+	const static std::size_t c_instruction_generate_size = 1024 * 1024;
 #ifndef NDEBUG
 public: //debug members
 	std::size_t m_sequential_count;
@@ -60,7 +62,9 @@ public: //debug members
 #endif//!NDEBUG
 private://members
 	/// @brief shared data structure for the return of generate()
-	std::vector<std::size_t> m_generate_ret;
+	std::vector<std::pair<std::size_t, std::size_t>> m_generate_ret;
+	std::size_t m_page_size;
+	std::size_t m_instructions_per_page;
 	/// @brief m_instruction_generate_size defines the number of instructions generated
 	std::size_t m_instruction_generate_size;
 	std::uniform_int_distribution<std::size_t> m_rand;

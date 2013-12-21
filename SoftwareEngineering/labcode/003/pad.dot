@@ -1,0 +1,60 @@
+digraph G {
+	labelloc="t";
+	label="Program Flow Chart";
+
+	start[label="START" shape="box" style="rounded"];
+	end[label="END" shape="box" style="rounded"];
+
+	subgraph cluster_0 {
+		color=grey;
+		style=filled;
+		label="";
+
+		assign_StudRecs[label="StudentRecord = HashMap(File::readAll(\"StudRecs\"))" shape="box"];
+		assign_NoAttend[label="StudentNAttend = HashMap(File::readAll(\"NoAttend\"))" shape="box"];
+		assign_Student[label="Student = StudentRecord.begin()" shape="box"];
+		cond_traversal[label="WHILE: Student != StudentRecord.end()" shape="diamond"];
+		return_Record[label="return StudentRecord" shape="box"];
+	}//subgraph
+
+
+	subgraph cluster_1 {
+		color=grey;
+		style=filled;
+		label="";
+
+		cond_minGPA[label="Student.GPA < minGPA" shape="diamond"];
+		cond_NAttend[label="StudentNAttend.find(Student.Name)\n!= Hashmap::NOT_FOUND" shape="diamond"];
+		assign_Student2[label="Student = StudentRecord.next()" shape="box"];
+	}//subgraph
+
+	subgraph cluster_2_0 {
+		color=grey;
+		style=filled;
+		label="";
+
+		erase_Student[label="StudentRecord.erase(Student)" shape="box"];
+	}//subgraph
+
+	subgraph cluster_2_1 {
+		color=grey;
+		style=filled;
+		label="";
+
+		erase_Student2[label="StudentRecord.erase(Student)" shape="box"];
+	}//subgraph
+
+	assign_StudRecs->assign_NoAttend;
+	assign_NoAttend->assign_Student;
+	assign_Student->cond_traversal;
+	cond_traversal->return_Record;
+	cond_traversal->cond_minGPA;
+	cond_minGPA->erase_Student[label="T"];
+	cond_minGPA->cond_NAttend;
+	cond_NAttend->erase_Student2[label="T"];
+	cond_NAttend->assign_Student2;
+
+	start->assign_StudRecs;
+	return_Record->end;
+}//graph
+

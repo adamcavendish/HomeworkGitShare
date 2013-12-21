@@ -23,3 +23,9 @@ FLENS/
 
 # Word Reports
 *.doc
+
+# executables
+*.out
+
+# log files
+*.log
