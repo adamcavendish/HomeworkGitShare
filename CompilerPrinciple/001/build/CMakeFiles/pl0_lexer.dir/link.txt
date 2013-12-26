@@ -1,1 +1,0 @@
-/usr/bin/g++-4.8   -std=c++11 -g3 -gdwarf-2 -Wall -march=native    CMakeFiles/pl0_lexer.dir/src/lexermain.cpp.o CMakeFiles/pl0_lexer.dir/src/lexer/Lexer.cpp.o CMakeFiles/pl0_lexer.dir/src/lexer/WordMap.cpp.o  -o pl0_lexer -rdynamic 
