@@ -66,7 +66,7 @@ SqlManager::getCourseGrade(const QString & user_name, const QString & password)
 {
     m_query.prepare(
         "SELECT "
-        "CourseGrades.CNO, Courses.CNAME, CourseGrades.GRADE "
+            "CourseGrades.CNO, Courses.CNAME, CourseGrades.GRADE "
         "FROM "
         "Courses, Students, CourseGrades "
         "WHERE "
@@ -76,7 +76,10 @@ SqlManager::getCourseGrade(const QString & user_name, const QString & password)
         "Students.PSWD = :pswd;");
     m_query.bindValue(":logn", user_name);
     m_query.bindValue(":pswd", password);
-    m_query.exec();
+    if(!m_query.exec()) {
+        qDebug() << "SQL QUERY EXEC() FAILED: "
+                 << m_pdb->lastError().text();
+    }//if
 
     QList<QObject *> ret;
     while(m_query.next()) {
@@ -89,4 +92,35 @@ SqlManager::getCourseGrade(const QString & user_name, const QString & password)
     return ret;
 }
 
+QList<QObject *>
+SqlManager::getAvailCourses(const QString &user_name, const QString &password)
+{
+    m_query.prepare(
+        "SELECT "
+            "Courses.CNO, Courses.CNAME, Courses.CREDIT, Courses.CDEPT, Courses.TNAME "
+        "FROM Courses WHERE Courses.cno NOT IN ("
+            "SELECT "
+                "CourseGrades.cno "
+            "FROM CourseGrades, Students WHERE "
+                "CourseGrades.sno = Students.SNO AND "
+                "Students.LOGN = :logn AND "
+                "Students.PSWD = :pswd);");
+    m_query.bindValue(":logn", user_name);
+    m_query.bindValue(":pswd", password);
+    if(!m_query.exec()) {
+        qDebug() << "SQL QUERY EXEC() FAILED: "
+                 << m_pdb->lastError().text();
+    }//if
 
+    QList<QObject *> ret;
+    while(m_query.next()) {
+        auto cno = m_query.value(0).toString();
+        auto cname = m_query.value(1).toString();
+        auto credit = m_query.value(2).toInt();
+        auto cdept = m_query.value(3).toString();
+        auto tname = m_query.value(4).toString();
+        ret.append(new AvailCoursesObject(cno, cname, credit, cdept, tname));
+    }//while
+
+    return ret;
+}

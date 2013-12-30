@@ -38,6 +38,10 @@ public:
 
     Q_INVOKABLE QList<QObject *>
     getCourseGrade(const QString & user_name, const QString & password);
+
+    Q_INVOKABLE QList<QObject *>
+    getAvailCourses(const QString & user_name, const QString & password);
+
 signals:
 
 public slots:

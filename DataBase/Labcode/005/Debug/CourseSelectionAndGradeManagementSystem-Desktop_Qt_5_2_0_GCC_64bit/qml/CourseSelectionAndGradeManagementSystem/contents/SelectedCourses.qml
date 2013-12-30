@@ -17,8 +17,8 @@ Item {
         }//Label
 
         Rectangle {
-            width: 200
-            height: 80
+            width: 300
+            height: 200
 
             TableView {
                 id: selectedCoursesView

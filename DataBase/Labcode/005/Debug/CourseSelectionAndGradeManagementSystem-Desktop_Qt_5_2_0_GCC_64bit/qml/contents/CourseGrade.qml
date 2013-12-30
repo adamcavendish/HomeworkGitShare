@@ -18,7 +18,7 @@ Item {
 
         Rectangle {
             width: 200
-            height: 80
+            height: 200
 
             TableView {
                 id: courseGradeView

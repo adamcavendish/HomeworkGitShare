@@ -1,0 +1,37 @@
+digraph G {
+	labelloc="t";
+	label="User Management System";
+
+	user[label="User" shape="box"];
+	bank[label="Bank" shape="box"];
+	database[label="Database" shape="box"];
+
+	register[label="Register" shape="ellipse"];
+	updatedb[label="Update Database" shape="ellipse"];
+
+	login[label="Log in" shape="ellipse"];
+	fetchdb[label="Fetch From Database" shape="ellipse"];
+	time_check[label="Register Time Check" shape="ellipse"];
+
+	payment[label="Payment" shape="ellipse"];
+
+	upgrade_level[label="Level Upgrade" shape="ellipse"];
+	updatedb_vip[label="Update Database" shape="ellipse"];
+
+	user->register;
+	register->updatedb;
+	updatedb->database;
+
+	user->login;
+	fetchdb->login;
+	login->time_check;
+	time_check->upgrade_level;
+	login->user;
+
+	user->payment;
+	payment->bank;
+	payment->upgrade_level;
+	upgrade_level->updatedb_vip;
+	updatedb_vip->database;
+}//digraph G
+

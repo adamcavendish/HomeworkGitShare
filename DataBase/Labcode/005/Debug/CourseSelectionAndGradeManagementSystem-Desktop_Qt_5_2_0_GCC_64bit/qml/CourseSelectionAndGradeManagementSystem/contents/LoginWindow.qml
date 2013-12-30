@@ -117,6 +117,10 @@ Window {
                         var courseGradeModel = sqlManager.getCourseGrade(
                                     userNameText.text, passwordText.text);
                         courseGrade.courseGradeModel = courseGradeModel;
+
+                        var availCoursesModel = sqlManager.getAvailCourses(
+                                    userNameText.text, passwordText.text);
+                        availCourses.availCoursesModel = availCoursesModel;
                     } else {
                         var errStr = qsTr("Login Failed: ") +
                                 sqlManager.lastErrorString();

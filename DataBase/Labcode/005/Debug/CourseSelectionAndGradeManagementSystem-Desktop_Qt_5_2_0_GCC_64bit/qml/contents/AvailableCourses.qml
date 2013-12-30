@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.1
 Item {
     width: availCoursesLayout.implicitWidth
     height: availCoursesLayout.implicitHeight
+    property variant availCoursesModel
 
     ColumnLayout {
        id: availCoursesLayout
@@ -16,22 +17,44 @@ Item {
 
        Rectangle {
            width: 300
-           height: 60
+           height: 150
 
-           /*
             TableView {
                 id: availCoursesView
+                model: availCoursesModel
 
                 anchors.fill: parent
 
                 TableViewColumn {
                    role: "cno"
-                   title: "CNO"
+                   title: qsTr("CNO")
                    width: 30
                 }//TableViewColumn
 
+                TableViewColumn {
+                    role: "cname"
+                    title: qsTr("Course Name")
+                    width: 100
+                }//TableViewColumn
+
+                TableViewColumn {
+                    role: "credit"
+                    title: qsTr("Credit")
+                    width: 50
+                }//TableViewColumn
+
+                TableViewColumn {
+                    role: "cdept"
+                    title: qsTr("Department")
+                    width: 100
+                }//TableViewColumn
+
+                TableViewColumn {
+                    role: "tname"
+                    title: qsTr("Teacher Name")
+                    width: 100
+                }//TableViewColumn
             }//TablView
-            */
        }//Rectangle
     }//ColumnLayout
 }//Item

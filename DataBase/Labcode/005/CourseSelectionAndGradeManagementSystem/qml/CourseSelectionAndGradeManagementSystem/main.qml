@@ -1,10 +1,7 @@
 import QtQuick 2.2
 import QtQuick.Controls 1.1
 import QtQuick.Window 2.0
-import QtQuick.Controls.Styles 1.1
 import QtQuick.Layouts 1.1
-import QtQuick.XmlListModel 2.0
-import QtQuick.Particles 2.0
 
 // CourseSelectionAndGradeManagementSystem
 import "contents/"
@@ -29,7 +26,7 @@ ApplicationWindow {
         ColumnLayout {
             RowLayout {
                 id: row1
-                spacing: 50
+                spacing: 30
 
                 StudentInfo { id: studentInfo }
 
@@ -40,7 +37,7 @@ ApplicationWindow {
 
             RowLayout {
                 id: row2
-                spacing: 50
+                spacing: 30
 
                 CourseGrade { id: courseGrade }
 
