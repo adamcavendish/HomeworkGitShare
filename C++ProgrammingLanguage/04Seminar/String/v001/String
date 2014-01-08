@@ -1,0 +1,26 @@
+/**
+*	@file String
+*/
+
+#include "Core/base_string.hpp"
+#include "Core/String.hpp"
+
+typedef _string<64> String;
+
+template <size_t basic_allocate_size>
+std::ostream & operator<<(std::ostream & os, const _string<basic_allocate_size> & s)
+{
+	for(size_t i = 0; i < s.size(); ++i)
+		os << s[i];
+	return os;
+}//operator<<(os, s)
+
+template <size_t basic_allocate_size>
+inline _string<basic_allocate_size> operator+(
+	const _string<basic_allocate_size> & s1,
+	const _string<basic_allocate_size> & s2)
+{
+	_string<basic_allocate_size> ret(s1);
+	return ret += s2;
+}//operator+(s1, s2)	
+

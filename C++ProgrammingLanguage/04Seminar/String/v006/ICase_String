@@ -1,0 +1,10 @@
+#pragma once
+
+#include "Core/core_string.hpp"
+#include "Core/base_string.hpp"
+#include "Core/base_string.tcc"
+#include "Core/_string.hpp"
+#include "Core/_icase_string.hpp"
+
+typedef _icase_string<64, 1> ICase_String;
+

@@ -1,0 +1,12 @@
+#pragma once
+
+template <size_t init_size, size_t inc_bit>
+inline _string<init_size, inc_bit> operator+(
+		const _string<init_size, inc_bit> & s1,
+		const _string<init_size, inc_bit> & s2)
+{
+	_string<init_size, inc_bit> ret(s1);
+	return (ret += s2);
+}//operator+(_string, _string)
+
+

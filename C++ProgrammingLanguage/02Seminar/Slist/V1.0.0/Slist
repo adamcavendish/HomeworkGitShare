@@ -1,0 +1,8 @@
+/**
+*	
+*/
+
+#include "Core/Slist.hpp"
+#include "Core/Slist.tcc"
+//#include "Core/Slist_iterator.hpp"
+

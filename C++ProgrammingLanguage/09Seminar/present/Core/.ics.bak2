@@ -1,0 +1,54 @@
+#pragma once
+
+#include "_string.hpp"
+#include <cctype>
+
+template <size_t init_size, size_t inc_bit>
+class _icase_string : public _string<init_size, inc_bit>
+{
+public:
+	inline _icase_string();
+	inline _icase_string(const char *s);
+
+protected:
+	virtual inline bool _eq(const char & a, const char & b) const;
+	virtual inline bool _less(const char & a, const char & b) const;
+	virtual inline bool _greater(const char & a, const char & b) const;
+};//class ICaseString
+
+template <size_t init_size, size_t inc_bit>
+inline _icase_string<init_size, inc_bit>::_icase_string() :
+	_string<init_size, inc_bit>() {}
+
+template <size_t init_size, size_t inc_bit>
+inline _icase_string<init_size, inc_bit>::_icase_string(const char *s) :
+	_string<init_size, inc_bit>(s)
+{}
+
+template <size_t init_size, size_t inc_bit>
+inline bool
+	_icase_string<init_size, inc_bit>::_eq(
+			const char & a,
+			const char & b) const
+{
+	return (toupper(a) == toupper(b));
+}//_eq(char, char)
+
+template <size_t init_size, size_t inc_bit>
+inline bool
+	_icase_string<init_size, inc_bit>::_less(
+			const char & a,
+			const char & b) const
+{
+	return (toupper(a) < toupper(b));
+}//_less(char, char)
+
+template <size_t init_size, size_t inc_bit>
+inline bool
+	_icase_string<init_size, inc_bit>::_greater(
+			const char & a,
+			const char & b) const
+{
+	return (toupper(a) > toupper(b));
+}//_greater(char, char)
+

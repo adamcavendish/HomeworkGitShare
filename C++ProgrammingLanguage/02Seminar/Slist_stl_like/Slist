@@ -1,0 +1,13 @@
+/**
+*	
+*/
+
+#include "Core/Slist.hpp"
+#include "Core/Slist.tcc"
+
+#ifdef	SLIST_DEBUG
+
+#include "Core/Debug/Slist_debug.tcc"
+
+#endif //SLIST_DEBUG
+

@@ -1,0 +1,11 @@
+/**
+*	@file String
+*/
+
+#include "Core/core_string.hpp"
+#include "Core/base_string.hpp"
+#include "Core/base_string.tcc"
+#include "Core/_string.hpp"
+
+typedef _string<64, 1> String;
+
