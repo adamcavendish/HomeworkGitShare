@@ -1,0 +1,11 @@
+#pragma once
+
+/**
+ *	This File Compiles in C++11 Standard
+ *	Correct with GNU Compilor: g++-4.7 -std=c++11
+ *	Please use -std=11 flag to compile
+ */
+
+#include "Array.hpp"
+#include "Array.tcc"
+

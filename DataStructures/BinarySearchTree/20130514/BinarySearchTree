@@ -1,0 +1,5 @@
+#pragma once
+
+#include "src/BinarySearchTree.hpp"
+#include "src/BinarySearchTree.tcc"
+
