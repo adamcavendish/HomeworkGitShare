@@ -1,6 +1,8 @@
-*/useless/*
-*/Debug/*
-*/Release/*
+*/useless/
+*/Debug/
+Debug/
+*/Release/
+Release/
 
 # Compiled Object files
 *.slo
