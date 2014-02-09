@@ -1,0 +1,47 @@
+# depslib dependency file v1.0
+1390937288 source:/files/Nutstore/000/CPPWorkSpace/SHUCourse/HomeworkGitShare/DataStructures/Set/Set/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"configs.h"
+	"globals.h"
+	"HelperFunctions.h"
+
+1390928049 /files/Nutstore/000/CPPWorkSpace/SHUCourse/HomeworkGitShare/DataStructures/Set/Set/configs.h
+
+1390938529 /files/Nutstore/000/CPPWorkSpace/SHUCourse/HomeworkGitShare/DataStructures/Set/Set/HelperFunctions.h
+	"configs.h"
+
+1390942486 source:/files/Nutstore/000/CPPWorkSpace/SHUCourse/HomeworkGitShare/DataStructures/Set/Set/HelperFunctions.c
+	"HelperFunctions.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	"configs.h"
+	"globals.h"
+	"arrayset/arrayset.h"
+	"linklistset/linklistset.h"
+
+1390941101 source:/files/Nutstore/000/CPPWorkSpace/SHUCourse/HomeworkGitShare/DataStructures/Set/Set/globals.c
+	"globals.h"
+
+1390938722 /files/Nutstore/000/CPPWorkSpace/SHUCourse/HomeworkGitShare/DataStructures/Set/Set/globals.h
+	"arrayset/arrayset.h"
+	"linklistset/linklistset.h"
+
+1390938978 /files/Nutstore/000/CPPWorkSpace/SHUCourse/HomeworkGitShare/DataStructures/Set/Set/arrayset/arrayset.h
+
+1390942772 source:/files/Nutstore/000/CPPWorkSpace/SHUCourse/HomeworkGitShare/DataStructures/Set/Set/linklistset/linklistset.c
+	"linklistset.h"
+	<stdio.h>
+	<stdlib.h>
+
+1390938986 source:/files/Nutstore/000/CPPWorkSpace/SHUCourse/HomeworkGitShare/DataStructures/Set/Set/arrayset/arrayset.c
+	"arrayset.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1390941054 /files/Nutstore/000/CPPWorkSpace/SHUCourse/HomeworkGitShare/DataStructures/Set/Set/linklistset/linklistset.h
+
