@@ -1,1 +1,0 @@
-/files/Nutstore/000/CPPWorkSpace/SHUCourse/HomeworkGitShare/OperatingSystem/labcode/winter02/version1/build/CMakeFiles/MemoryManagement.dir

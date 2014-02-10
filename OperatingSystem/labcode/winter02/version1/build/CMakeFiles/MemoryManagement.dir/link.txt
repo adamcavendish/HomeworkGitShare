@@ -1,1 +1,0 @@
-/usr/bin/g++   -std=c++11 -Wall -march=native -flto -O3    CMakeFiles/MemoryManagement.dir/src/helper_functions.cpp.o CMakeFiles/MemoryManagement.dir/src/main.cpp.o  -o MemoryManagement -rdynamic 
