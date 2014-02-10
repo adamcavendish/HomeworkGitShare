@@ -25,7 +25,8 @@ Release/
 FLENS/
 
 # build directories
-*/build/*
+*/build/
+build/
 
 # Word Reports
 *.doc

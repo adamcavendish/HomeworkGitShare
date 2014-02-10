@@ -1,6 +1,0 @@
-/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/001/build/CMakeFiles/031_1.dir
-/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/001/build/CMakeFiles/031_1_unity.dir
-/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/001/build/CMakeFiles/031_2.dir
-/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/001/build/CMakeFiles/031_2_unity.dir
-/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/001/build/CMakeFiles/all_unity.dir
-/files/Nutstore/000/CPPWorkSpace/SHUCourse/NumerialMethods/001/build/CMakeFiles/clean_cotire.dir

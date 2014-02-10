@@ -1,1 +1,0 @@
-/usr/bin/g++-4.8   -g3 -std=c++11 -Wall -m64 -march=native -O3    CMakeFiles/main.dir/algorithm/fb_algo.cpp.o CMakeFiles/main.dir/main.cpp.o  -o main -rdynamic 
