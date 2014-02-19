@@ -17,7 +17,7 @@ Item {
         }//Label
 
         Rectangle {
-            width: 300
+            width: 450
             height: 200
 
             TableView {
@@ -33,15 +33,27 @@ Item {
                 }//TableViewColumn
 
                 TableViewColumn {
-                    role: "sno"
-                    title: qsTr("Course")
-                    width: 80
+                    role: "cname"
+                    title: qsTr("Course Name")
+                    width: 150
                 }//TableViewColumn
 
                 TableViewColumn {
-                    role: "grade"
-                    title: qsTr("Grade")
-                    width: 30
+                    role: "credit"
+                    title: qsTr("Credit")
+                    width: 50
+                }//TableViewColumn
+
+                TableViewColumn {
+                    role: "cdept"
+                    title: qsTr("Department")
+                    width: 100
+                }//TableViewColumn
+
+                TableViewColumn {
+                    role: "tname"
+                    title: qsTr("Teacher Name")
+                    width: 100
                 }//TableViewColumn
 
                 frameVisible: true

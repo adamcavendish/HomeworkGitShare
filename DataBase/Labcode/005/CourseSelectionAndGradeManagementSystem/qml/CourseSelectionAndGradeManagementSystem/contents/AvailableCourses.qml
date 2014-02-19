@@ -16,7 +16,7 @@ Item {
        }//Label
 
        Rectangle {
-           width: 300
+           width: 450
            height: 150
 
             TableView {
@@ -34,7 +34,7 @@ Item {
                 TableViewColumn {
                     role: "cname"
                     title: qsTr("Course Name")
-                    width: 100
+                    width: 150
                 }//TableViewColumn
 
                 TableViewColumn {
@@ -54,6 +54,11 @@ Item {
                     title: qsTr("Teacher Name")
                     width: 100
                 }//TableViewColumn
+
+                frameVisible: true
+                headerVisible: true
+                sortIndicatorVisible: true
+                alternatingRowColors: true
             }//TablView
        }//Rectangle
     }//ColumnLayout

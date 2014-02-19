@@ -110,17 +110,21 @@ Window {
 
                         userNameText.text = 'S1';
                         passwordText.text = 'S1';
-                        var studentModel = sqlManager.getStudentInfo(
-                                    userNameText.text, passwordText.text);
+
+                        sqlManager.setUsername(userNameText.text);
+                        sqlManager.setPassword(passwordText.text);
+
+                        var studentModel = sqlManager.getStudentInfo();
                         studentInfo.studentModel = studentModel;
 
-                        var courseGradeModel = sqlManager.getCourseGrade(
-                                    userNameText.text, passwordText.text);
+                        var courseGradeModel = sqlManager.getCourseGrade();
                         courseGrade.courseGradeModel = courseGradeModel;
 
-                        var availCoursesModel = sqlManager.getAvailCourses(
-                                    userNameText.text, passwordText.text);
+                        var availCoursesModel = sqlManager.getAvailCourses();
                         availCourses.availCoursesModel = availCoursesModel;
+
+                        var selectedCoursesModel = sqlManager.getSelectedCourses();
+                        selectedCourses.selectedCoursesModel = selectedCoursesModel;
                     } else {
                         var errStr = qsTr("Login Failed: ") +
                                 sqlManager.lastErrorString();

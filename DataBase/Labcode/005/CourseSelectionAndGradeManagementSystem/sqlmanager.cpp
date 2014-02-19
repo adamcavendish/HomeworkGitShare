@@ -1,4 +1,5 @@
 #include "sqlmanager.hpp"
+#include "selectedcoursesobject.h"
 
 SqlManager::SqlManager(QObject *parent) :
     QObject(parent),
@@ -36,12 +37,12 @@ QString SqlManager::lastErrorString() const
 }
 
 QList<QObject *>
-SqlManager::getStudentInfo(const QString & user_name, const QString & password)
+SqlManager::getStudentInfo()
 {
     m_query.prepare("SELECT SNO, SNAME, GENDER, AGE, SDEPT "
                   "FROM Students WHERE LOGN = :logn AND PSWD = :pswd");
-    m_query.bindValue(":logn", user_name);
-    m_query.bindValue(":pswd", password);
+    m_query.bindValue(":logn", m_username);
+    m_query.bindValue(":pswd", m_password);
 
     if(!m_query.exec()) {
         qDebug() << "SQL QUERY EXEC() FAILED: "
@@ -62,20 +63,21 @@ SqlManager::getStudentInfo(const QString & user_name, const QString & password)
 }
 
 QList<QObject *>
-SqlManager::getCourseGrade(const QString & user_name, const QString & password)
+SqlManager::getCourseGrade()
 {
     m_query.prepare(
         "SELECT "
             "CourseGrades.CNO, Courses.CNAME, CourseGrades.GRADE "
         "FROM "
-        "Courses, Students, CourseGrades "
+            "Courses, Students, CourseGrades "
         "WHERE "
-        "CourseGrades.sno = Students.sno AND "
-        "Courses.cno = CourseGrades.cno AND "
-        "Students.LOGN = :logn AND "
-        "Students.PSWD = :pswd;");
-    m_query.bindValue(":logn", user_name);
-    m_query.bindValue(":pswd", password);
+            "CourseGrades.sno = Students.sno AND "
+            "Courses.cno = CourseGrades.cno AND "
+            "CourseGrades.GRADE IS NOT NULL AND "
+            "Students.LOGN = :logn AND "
+            "Students.PSWD = :pswd;");
+    m_query.bindValue(":logn", m_username);
+    m_query.bindValue(":pswd", m_password);
     if(!m_query.exec()) {
         qDebug() << "SQL QUERY EXEC() FAILED: "
                  << m_pdb->lastError().text();
@@ -93,7 +95,7 @@ SqlManager::getCourseGrade(const QString & user_name, const QString & password)
 }
 
 QList<QObject *>
-SqlManager::getAvailCourses(const QString &user_name, const QString &password)
+SqlManager::getAvailCourses()
 {
     m_query.prepare(
         "SELECT "
@@ -105,8 +107,8 @@ SqlManager::getAvailCourses(const QString &user_name, const QString &password)
                 "CourseGrades.sno = Students.SNO AND "
                 "Students.LOGN = :logn AND "
                 "Students.PSWD = :pswd);");
-    m_query.bindValue(":logn", user_name);
-    m_query.bindValue(":pswd", password);
+    m_query.bindValue(":logn", m_username);
+    m_query.bindValue(":pswd", m_password);
     if(!m_query.exec()) {
         qDebug() << "SQL QUERY EXEC() FAILED: "
                  << m_pdb->lastError().text();
@@ -124,3 +126,106 @@ SqlManager::getAvailCourses(const QString &user_name, const QString &password)
 
     return ret;
 }
+
+QList<QObject *>
+SqlManager::getSelectedCourses()
+{
+    m_query.prepare(
+        "SELECT "
+            "Courses.CNO, Courses.CNAME, Courses.CREDIT, Courses.CDEPT, Courses.TNAME "
+        "FROM Courses, CourseGrades, Students WHERE "
+            "Courses.CNO = CourseGrades.CNO AND "
+            "Students.SNO = CourseGrades.SNO AND "
+            "Students.LOGN = :logn AND "
+            "Students.PSWD = :pswd AND "
+            "CourseGrades.GRADE IS NULL;");
+    m_query.bindValue(":logn", m_username);
+    m_query.bindValue(":pswd", m_password);
+    if(!m_query.exec()) {
+        qDebug() << "SQL QUERY EXEC() FAILED: "
+                 << m_pdb->lastError().text();
+    }//if
+
+    QList<QObject *> ret;
+    while(m_query.next()) {
+        auto cno = m_query.value(0).toString();
+        auto cname = m_query.value(1).toString();
+        auto credit = m_query.value(2).toInt();
+        auto cdept = m_query.value(3).toString();
+        auto tname = m_query.value(4).toString();
+        ret.append(new SelectedCoursesObject(cno, cname, credit, cdept, tname));
+    }//while
+
+    return ret;
+}
+
+QString SqlManager::getCourseName(const QString &cno)
+{
+    m_query.prepare(
+        "SELECT CNAME FROM Courses WHERE "
+            "CNO = :cno;");
+    m_query.bindValue(":cno", cno);
+    if(!m_query.exec()) {
+        qDebug() << "SQL QUERY EXEC() FAILED: "
+                 << m_pdb->lastError().text();
+        return QString();
+    }//if
+    if(m_query.size() > 0) {
+        m_query.next();
+        return m_query.value(0).toString();
+    }//if
+    return QString();
+}
+
+QString SqlManager::getTeacherName(const QString &cno)
+{
+    m_query.prepare(
+        "SELECT TNAME FROM Courses WHERE "
+            "CNO = :cno;");
+    m_query.bindValue(":cno", cno);
+    if(!m_query.exec()) {
+        qDebug() << "SQL QUERY EXEC() FAILED: "
+                 << m_pdb->lastError().text();
+        return QString();
+    }//if
+    if(m_query.size() > 0) {
+        m_query.next();
+        return m_query.value(0).toString();
+    }//if
+    return QString();
+}
+
+bool
+SqlManager::selectCourse(const QString & cno)
+{
+    m_query.prepare(
+        "INSERT INTO CourseGrades(SNO, CNO) VALUES "
+        "(:sno, :cno);");
+    m_query.bindValue(":sno", m_username);
+    m_query.bindValue(":cno", cno);
+    if(!m_query.exec()) {
+        qDebug() << "SQL QUERY EXEC() FAILED: "
+                 << " Select Course Failed. You've already selected the course.";
+        return false;
+    }//if
+    return true;
+}
+
+bool SqlManager::dropCourse(const QString &cno)
+{
+    m_query.prepare(
+        "DELETE FROM CourseGrades WHERE "
+            "SNO = :sno AND "
+            "CNO = :cno AND "
+            "GRADE IS NULL;");
+    m_query.bindValue(":sno", m_username);
+    m_query.bindValue(":cno", cno);
+    if(!m_query.exec()) {
+        qDebug() << "SQL QUERY EXEC() FAILED: "
+                 << " Drop Course Failed. You haven't selected the course!";
+        return false;
+    }//if
+    return true;
+}
+
+

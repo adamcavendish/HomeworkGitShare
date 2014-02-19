@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     sqlmanager.cpp \
     studentinfoobject.cpp \
     availcoursesobject.cpp \
-    coursegradeobject.cpp
+    coursegradeobject.cpp \
+    selectedcoursesobject.cpp
 
 # Installation path
 # target.path =
@@ -26,7 +27,8 @@ HEADERS += \
     sqlmanager.hpp \
     studentinfoobject.hpp \
     availcoursesobject.hpp \
-    coursegradeobject.hpp
+    coursegradeobject.hpp \
+    selectedcoursesobject.h
 
 
 ## Customize
