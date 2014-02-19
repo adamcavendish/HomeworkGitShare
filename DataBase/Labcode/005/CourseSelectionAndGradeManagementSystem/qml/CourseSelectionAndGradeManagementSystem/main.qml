@@ -20,6 +20,7 @@ ApplicationWindow {
 
     LoginWindow { id: loginWindow; visible: false }
     GradeManageWindow { id: gradeManageWindow; visible: false }
+    UserManageWindow { id: userManageWindow; visible: false }
 
     RowLayout {
         id: mainLayout
@@ -54,13 +55,18 @@ ApplicationWindow {
                 id: gradeManageButton
                 text: qsTr("Grade Manager")
                 onClicked: {
-                    if(inputWidget.cno != "") {
-                        gradeManageWindow.cno = inputWidget.cno;
-                        gradeManageWindow.visible = true;
-                    } else {
-                        appStatusLabel.text = qsTr("Please Input A Course ID!");
-                    }//if-else
+                    gradeManageWindow.courseInfoModel = sqlManager.getAllCourseInfo();
+                    gradeManageWindow.visible = true;
                 }//onClicked
+            }//Button
+
+            Button {
+                id: userManageButton
+                text: qsTr("User Manager")
+                onClicked: {
+                    userManageWindow.userModel = sqlManager.getAllUsers();
+                    userManageWindow.visible = true;
+                }
             }//Button
 
             Button {

@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.2
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.0
@@ -9,6 +9,7 @@ Window {
 
     property string cno;
     property variant studentGradeManageModel;
+    property variant courseInfoModel;
 
     x: Screen.desktopAvailableWidth/2 - gradeManageWindow.width/2
     y: Screen.desktopAvailableHeight/2 - gradeManageWindow.height/2
@@ -52,11 +53,45 @@ Window {
 
         RowLayout {
             ColumnLayout {
-                Label { text: qsTr("Course Selection: "); }
+                Label { text: qsTr("Select Course: "); }
 
-                ComboBox {
-                    // @TODO
-                }//ComboBox
+                Rectangle {
+                    width: 200
+                    height: 300
+                    Component {
+                        id: hlComponent
+                        Rectangle {
+                            color: "lightsteelblue"
+                            radius: 5
+                            y: courseList.currentItem.y
+                        }//Rectangle
+                    }//Component
+
+                    Component {
+                        id: dlComponent
+                        Text {
+                            text: model.modelData.cno + ": " + model.modelData.cname
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: {
+                                    gradeManageWindow.cno = model.modelData.cno
+                                    courseList.currentIndex = index;
+                                    studentGradeManageModel =
+                                            sqlManager.getCourseStudentsGrade(model.modelData.cno);
+                                }//onClicked
+                            }//MouseArea
+                        }//Text
+                    }//Component
+
+                    ListView {
+                        id: courseList
+                        anchors.fill: parent
+                        model: courseInfoModel
+                        delegate: dlComponent
+                        highlight: hlComponent
+                        focus: true
+                    }//ListView
+                }//Rectangle
             }//ColumnLayout
 
             ColumnLayout {
@@ -81,16 +116,35 @@ Window {
                         TableViewColumn {
                             role: "grade"
                             title: qsTr("Grade")
+                            delegate: gradeDlComponent
                             width: 50
                         }//TableViewColumn
 
+                        Component {
+                            id: gradeDlComponent
+                            TextInput {
+                                id: gradeInput
+                                text: styleData.value
+                                onEditingFinished: {
+                                    var sno = gradeManageWindow.studentGradeManageModel[styleData.row].sno;
+                                    var grade = parseInt(gradeInput.text);
+                                    if(sno !== "" && grade < 100 && grade > 0)
+                                        sqlManager.updateGrade(sno, gradeManageWindow.cno, grade);
+                                }//onEditingFinished
+                            }//TextInput
+                        }//Component
+
                         frameVisible: true
                         headerVisible: true
-                        sortIndicatorVisible: true
+                        sortIndicatorVisible: false
                         alternatingRowColors: true
                     }//TableView
                 }//Rectangle
             }//ColumnLayout
         }//RowLayout
+
+        ColumnLayout {
+            id: buttonsCol
+        }//ColumnLayout
     }//ColumnLayout
 }//Window

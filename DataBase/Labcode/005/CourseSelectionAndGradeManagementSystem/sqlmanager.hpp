@@ -12,10 +12,6 @@
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlDriver>
 #include <QtSql/QSqlError>
-// CourseSelectionAndGradeManagementSystem
-#include "studentinfoobject.hpp"
-#include "availcoursesobject.hpp"
-#include "coursegradeobject.hpp"
 
 class SqlManager : public QObject
 {
@@ -26,9 +22,6 @@ public:
 
     Q_INVOKABLE bool
     login(const QString & usr_name, const QString & password);
-
-    Q_INVOKABLE QSqlError
-    lastError() const;
 
     Q_INVOKABLE QString
     lastErrorString() const;
@@ -59,12 +52,30 @@ public:
     Q_INVOKABLE QString
     getTeacherName(const QString & cno);
 
+    Q_INVOKABLE QList<QObject *>
+    getAllCourseInfo();
+
     Q_INVOKABLE bool
     selectCourse(const QString & cno);
 
     Q_INVOKABLE bool
     dropCourse(const QString & cno);
 
+    Q_INVOKABLE QList<QObject *>
+    getCourseStudentsGrade(const QString & cno);
+
+    Q_INVOKABLE void
+    updateGrade(const QString & sno, const QString & cno, int grade);
+
+    Q_INVOKABLE QList<QObject *>
+    getAllUsers();
+
+    Q_INVOKABLE void
+    addUser(const QString & sno, const QString & sname, const QString & gender,
+            int age, const QString & sdept);
+
+    Q_INVOKABLE void
+    dropUser(const QString & sno);
 signals:
 
 public slots:

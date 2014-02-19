@@ -108,9 +108,6 @@ Window {
                         console.log(userNameText.text, " Login Success!");
                         loginWindow.visible = false;
 
-                        userNameText.text = 'S1';
-                        passwordText.text = 'S1';
-
                         sqlManager.setUsername(userNameText.text);
                         sqlManager.setPassword(passwordText.text);
 
@@ -133,6 +130,8 @@ Window {
                         console.log("Login Failed!");
                         console.log("Error: ", sqlManager.lastErrorString());
                     }//if-else
+                    userNameText.text = "";
+                    passwordText.text = "";
                 }//onClicked
             }//Button
 

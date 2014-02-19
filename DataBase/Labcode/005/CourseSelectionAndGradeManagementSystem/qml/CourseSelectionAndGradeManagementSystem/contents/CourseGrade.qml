@@ -46,7 +46,7 @@ Item {
 
                 frameVisible: true
                 headerVisible: true
-                sortIndicatorVisible: true
+                sortIndicatorVisible: false
                 alternatingRowColors: true
             }//TabelView
         }//Rectangle

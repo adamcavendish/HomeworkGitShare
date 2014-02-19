@@ -14,7 +14,10 @@ SOURCES += main.cpp \
     studentinfoobject.cpp \
     availcoursesobject.cpp \
     coursegradeobject.cpp \
-    selectedcoursesobject.cpp
+    selectedcoursesobject.cpp \
+    courseinfoobject.cpp \
+    studentgrademanageobject.cpp \
+    userinfoobject.cpp
 
 # Installation path
 # target.path =
@@ -28,7 +31,10 @@ HEADERS += \
     studentinfoobject.hpp \
     availcoursesobject.hpp \
     coursegradeobject.hpp \
-    selectedcoursesobject.h
+    selectedcoursesobject.h \
+    courseinfoobject.h \
+    studentgrademanageobject.h \
+    userinfoobject.h
 
 
 ## Customize
