@@ -1,0 +1,190 @@
+1. 请用SQL，关系代数，元组关系演算，域关系演算写出如下查询：
+检索同时选修了“08305001”和“08305002”的学生学号和姓名。（提示：不止4种查询表达方式）
+
+* SQL:
+
+```
+select xh,xm from S where xh in (
+        select distinct x.xh from E x, E y where
+            (x.kh='08305001') and
+            (y.kh='08305002') and
+            (x.xh=y.xh))
+```
+
+```
+SELECT
+    Students.id,
+    Students.name
+FROM
+    (SELECT
+        Students.id,
+        CourseSelection.course_id
+    FROM
+        Students,
+        CourseSelection
+    WHERE
+        CourseSelection.student_id = Students.id AND
+        CourseSelection.course_id = '08305002'
+    ) AS T1,
+    Students
+WHERE
+    Students.id = T1.student_id AND
+    T1.course_id = '08305001';
+```
+
+* Relaional Algebra:
+
+```
+Projection(
+    NaturalJoin(
+        Selection(
+            Intersection(
+                equ(CS1.course_id
+                    '08305002')
+                equ(CS2,course_id
+                    '08305001'))
+            CartesianProduct(
+                CourseSelection AS CS1
+                CourseSelection AS CS2))
+        Student)
+    Student.id
+    Student.name)
+```
+
+```
+Projection(
+    NaturalJoin(
+        Selection(
+            equ(course_id
+                '08305001')
+            Selection(
+                equ(course_id
+                    '08305002')
+                CourseSelection))
+        Student)
+    Student.id
+    Student.name)
+```
+
+* Tuple Relational Calculus
+
+```
+{ t |
+    exist(w
+        and(Student(w)
+            exist(u
+                exist(v
+                    and(CourseSelection(u)
+                        CourseSelection(v)
+                        equ(u[course_id] '08305001')
+                        equ(v[course_id] '08305002')
+                        equ(u[student_id] v[student_id])
+                        equ(w[id] u[student_id]))))
+            equ(t[1] w[id])
+            equ(t[2] w[name])))
+}
+```
+
+```
+{ t |
+    exist(w
+        and(Student(w)
+            exist(v
+                and(exist(u
+                        and(CourseSelection(u)
+                            equ(u[course_id] '08305001')
+                            equ(v[student_id] u[student_id])))
+                    equ(v[course_id '08305002'])
+                    equ(w[student_id] v[student_id])))
+        equ(t[1] w[id])
+        equ(t[2] w[name])))
+}
+```
+* Domain Relational Calculus
+
+```
+{ id name |
+    and(Student(id name)
+        exist(student_id1 course_id1
+            exist(student_id2 course_id2
+                and(
+                    CourseSelection(student_id1 course_id1)
+                    CourseSelection(student_id2 course_id2)
+                    equ(course_id1 '08305001')
+                    equ(course_id2 '08305002')
+                    equ(student_id1 student_id2)
+                    equ(id student_id1)))))
+}
+```
+
+```
+{ id name |
+    and(Student(id name)
+        exist(student_id1 course_id1
+            and(
+                exist(student_id2 course_id2
+                    and(CourseSelection(student_id2 course_id2)
+                        equ(course_id2 '08305002')
+                        equ(student_id1 student_id2)))
+                equ(course_id1 '08305001')
+                equ(id student_id1))))
+}
+```
+
+2. 请用关系代数写出检索同时有3个或3个以上学生选课的老师所在学院名，教师名
+Projection(
+    NaturalJoin(
+        Selection(
+            Intersection(
+                equ(CS1.course_id
+                    '08305002')
+                equ(CS2,course_id
+                    '08305001'))
+            CartesianProduct(
+                CourseSelection AS CS1
+                CourseSelection AS CS2))
+        Student)
+    Student.id
+    Student.name)
+
+```
+Projection(
+    Selection(
+        Intersection(
+            equ(teacher_id Teacher.teacher_id)
+            equ(Teacher.college_id College.id))
+        NaturalJoin(
+            NaturalJoin(
+                Projection(
+                    Selection(
+                        Intersection(
+                            notequ(CS1.student_id CS2.student_id)
+                            notequ(CS1.student_id CS3.student_id)
+                            notequ(CS2.student_id CS3.student_id)
+                            equ(CS1.teacher_id = CS2.teacher_id)
+                            equ(CS2.teacher_id = CS3.teacher_id))
+                        CartesianProduct(
+                            CartesianProduct(
+                                CourseSelection AS CS1
+                                CourseSelection AS CS2)
+                            CourseSelection AS CS3))
+                    teacher_id)
+                Teacher)
+            Colleges))
+    Colleges.department
+    Teacher.name)
+```
+    
+
+3. 用元组关系演算写出如下查询：
+* 检索选修课程包含1106同学所学全部课程的学生学号和姓名。
+* 检索刘晓明不学的课程的课程号。
+
+
+
+
+
+
+
+
+
