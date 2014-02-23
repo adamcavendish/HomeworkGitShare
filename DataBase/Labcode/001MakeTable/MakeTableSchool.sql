@@ -82,7 +82,8 @@ CREATE INDEX index02 ON Courses (
 INSERT INTO Colleges(id, name, address, telephone) VALUES
 ("01", "計算機學院", "上大東區三號樓", "65347567"),
 ("02", "通訊學院", "上大東區二號樓", "65341234"),
-("03", "材料學院", "上大東區四號樓", "65347890");
+("03", "材料學院", "上大東區四號樓", "65347890"),
+("04", "神奇的不開課學院", "上大東區食堂", "12345678");
 
 INSERT INTO Students(id, name, gender, birthday, birthplace, cellphone, college_id) VALUES
 ("1101", "李明", "男", "1993-03-06", "上海", "13613005486", "02"),
@@ -92,7 +93,6 @@ INSERT INTO Students(id, name, gender, birthday, birthplace, cellphone, college_
 ("1105", "劉成剛", "男", "1991-06-07", "上海", "18015872567", "01"),
 ("1106", "李二麗", "女", "1993-05-04", "江蘇", "18107620945", "01"),
 ("1107", "張曉峯", "男", "1992-08-16", "浙江", "13912341078", "01");
-
 
 INSERT INTO Teachers(id, name, gender, birthday, title, salary, college_id) VALUES
 ("0101", "陳迪茂", "男", "1973-03-06", "副教授", 3567.00, "01"),
