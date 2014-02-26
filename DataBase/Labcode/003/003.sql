@@ -1,3 +1,15 @@
+USE make10k;
+
+SYSTEM echo "1. 验证在1000万个以上记录时在索引和不索引时的查询时间区别。"
+
+SYSTEM echo "Without index: "
+SELECT id, name FROM make10k WHERE name = 'n10024';
+
+SYSTEM echo "With index: "
+SELECT id, name FROM make10k_index WHERE name = 'n10024';
+
+SYSTEM echo ""
+
 USE school;
 
 SYSTEM echo "2. 查询每个学生选课情况（包括没有选修课程的学生）";
