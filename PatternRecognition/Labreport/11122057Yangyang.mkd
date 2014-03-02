@@ -13,12 +13,12 @@
 
 > 以下爲幫助文檔中的示例代碼，mu爲mean vector(均值向量), Sigma爲covariance matrix協方差矩陣
 
-````
+```
 mu = [1 -1];
 Sigma = [.9 .4; .4 .3];
 r = mvnrnd(mu, Sigma, 500);
 plot(r(:,1),r(:,2),'.');
-````
+```
 	
 ### * 實驗結果截圖：
 
@@ -34,7 +34,7 @@ plot(r(:,1),r(:,2),'.');
 
 > 代碼中解釋如下：
 
-````
+```
 function val = multi_var_gaussian_probability_density(mu, Sigma, x)
 % multi_var_gaussian_probability_density
 %   Computes multi-variable Gaussian Probability Density Value.
@@ -54,13 +54,13 @@ val = (1/((2 * pi) ^ (dimension/2) * det(Sigma) ^ 0.5)) ...
 
 
 end
-````
+```
 	    
 ### * 實驗結果：
 
 1 *一個簡單的腳本來繪出多維高斯分佈的圖像：*
 
-````
+```
 maxn = 5;
 minn = -5;
 step = 0.5;
@@ -83,7 +83,7 @@ for i = minn:step:maxn
 end
 
 surf(x1, x2, z)
-````
+```
 
 2 *圖像結果*：
 
@@ -108,7 +108,7 @@ surf(x1, x2, z)
 
 * 以下爲函數代碼：
 
-````
+```
 function [ DataSet, BasedGaussDistIndex ] = generate_gauss_classes(mu, Sigma, Probability, Count)
 % BRIEF: generate gauss data set
 % `a` is the dimension of your data set, and we are going to make `N` of them
@@ -167,11 +167,11 @@ for i = 1 : Count
 end
 
 end
-````
+```
 
 * 我嘗試用一個簡單的腳本將數據可視化，腳本如下：
 
-````
+```
 a = 3;
 c = 4;
 
@@ -216,7 +216,7 @@ scatter3(g1(:,1), g1(:,2), g1(:,3), 'MarkerFaceColor', [0, 0.75, 0.75]);
 scatter3(g2(:,1), g2(:,2), g2(:,3), 'MarkerFaceColor', [0.75, 0, 0.75]);
 scatter3(g3(:,1), g3(:,2), g3(:,3), 'MarkerFaceColor', [0.75, 0.75, 0]);
 scatter3(g4(:,1), g4(:,2), g4(:,3), 'MarkerFaceColor', [0.75, 0.75, 0.75]);
-````
+```
 
 ### * 實驗最終可視化效果：
 
@@ -236,7 +236,7 @@ scatter3(g4(:,1), g4(:,2), g4(:,3), 'MarkerFaceColor', [0.75, 0.75, 0.75]);
 * 這個和習題2.3中，我用來可視化的代碼差不多，所以沒什麼問題，也不用太多加說明。
 * 另外，書上的代碼有小小的一點點性能問題，所以我稍微改動了一下
 
-````
+```
 function hw24_plot_data(DataSet, BasedGaussDistIndex, mu)
     [N, col] = size(DataSet);
     [c, ~] = size(mu);
@@ -276,10 +276,10 @@ function hw24_plot_data(DataSet, BasedGaussDistIndex, mu)
     % plot the `mu`
     plot(mu(:, 1), mu(:, 2), 'k + ')
 end
-````
+```
 
 * 以下是driver script:
-````
+```
 a = 2;
 c = 6; % maximum is 6 because of colors
 
@@ -314,7 +314,7 @@ disp('DataSet: ');
 disp(X);
 
 hw24_plot_data(X, y, m);
-````
+```
 
 ### * 實驗效果圖：
 
@@ -327,7 +327,7 @@ hw24_plot_data(X, y, m);
 
 ### * 實驗代碼：
 
-````
+```
 function result = bayes_classifier(mu, Sigma, Probability, DataSet)
 % BRIEF: Use Bayes Classifier to classify DataSet
 %
@@ -357,11 +357,11 @@ function result = bayes_classifier(mu, Sigma, Probability, DataSet)
         [~, result(i)] = max(t);
     end
 end
-````
+```
 
 ### * 自動化腳本：
 
-````
+```
 a = 3;
 c = 4;
 
@@ -389,14 +389,14 @@ ret = bayes_classifier(m, S, P, X);
 
 disp('sum(abs(bayes_classifer_result - answer)): ');
 disp(sum(abs(ret' - y)));
-````
+```
 
 ### * 實驗結果：
 
-````
+```
 sum(abs(bayes_classifer_result - answer)): 
      0
-````
+```
 
 * 我相信畫一張和習題2.3一樣的圖片已經沒什麼太大意思了，大家也看不出什麼不同
 * 我做的事情是這樣的，我拿Bayes分類器做出來的結果和原先用來生成的Based Gauss Distribution Index相減（爲了抵消正負我做了絕對值）
@@ -406,7 +406,7 @@ sum(abs(bayes_classifer_result - answer)):
 
 ### * 實驗代碼：
 
-````
+```
 m = [0 1]';
 S = eye(2);
 X1 = [0.2 1.3]';
@@ -415,21 +415,21 @@ pg1 = multi_var_gaussian_probability_density(m, S, X1);
 pg2 = multi_var_gaussian_probability_density(m, S, X2);
 disp(pg1);
 disp(pg2);
-````
+```
 
 ### * 實驗結果：
 
-````
+```
     0.1491
 
     0.0010
-````
+```
 
 ## 習題 1.3.3
 
 ### * 實驗代碼：
 
-````
+```
 N = 500;
 m = [0 0];
 S = zeros(2,2,8);
@@ -455,7 +455,7 @@ for i = 1 : 8
     axis([-7 7 -7 7]);
 end
 
-````
+```
 
 ### * 實驗效果圖：
 
@@ -474,7 +474,7 @@ end
 
 ### * 實驗代碼：
 
-````
+```
 Prob = [0.5 0.5];
 mu = [1 1; 3 3];
 Sig = zeros(2,2,2);
@@ -506,11 +506,11 @@ ret = bayes_classifier(mu, Sig, Prob, x);
 disp('Probability: '); disp(Prob);
 fprintf('Class: %i\n', ret);
 fprintf('----------\n');
-````
+```
 
 ### * 實驗結果：
 
-````
+```
 mu1:
      1     1
 
@@ -544,7 +544,7 @@ Probability:
 
 Class: 1
 ----------
-````
+```
 
 ### * 實驗結果的啓示：
 
@@ -561,7 +561,7 @@ Class: 1
 
 ### * 實驗代碼：
 
-````
+```
 function [params] = nbayes_learn(traindata, trainlabels)
 
 nclasses = 2;
@@ -596,9 +596,9 @@ for j = 1:d
 end
  
 end
-````
+```
 
-````
+```
 function [predictions] = nbayes_predict(params, testdata)
 
 nclasses = 2;
@@ -625,10 +625,10 @@ for m=1:ntest
 end
 
 end
-````
+```
 ### * 自動化腳本：
 
-````
+```
 features_mat = dlmread('spam_features.txt');
 labels_mat = dlmread('spam_labels.txt');
 
@@ -648,13 +648,13 @@ rate = sum(temp)/size(temp, 1);
 
 fprintf('Training Data size = %d\n', trainamount);
 fprintf('Accuracy = %f\n', 1-rate);
-````
+```
 ### * 實驗結果：
 
-````
+```
 Training Data size = 2300
 Accuracy = 0.884833
-````
+```
 
 # <center>實驗4</center>
 
@@ -662,7 +662,7 @@ Accuracy = 0.884833
 
 ### * 實驗代碼重要部分解釋：
 
-````
+```
 sampleSize = size( Data.samples, DOWN );
 maxNorm    = realmin;
 for iObservation = 1:sampleSize
@@ -674,11 +674,11 @@ end
 enclosingBallRadius        = maxNorm;
 enclosingBallRadiusSquared = enclosingBallRadius .^ 2;
 
-````
+```
 
 * 這部分是爲了求出離原點最遠的點，用來給出bias的修正值，以防梯度下降法無法收斂
 
-````
+```
 maxNumSteps = 1000;
 
 for iStep = 1:maxNumSteps
@@ -722,7 +722,7 @@ for iStep = 1:maxNumSteps
     end
 
 end % outer loop
-````
+```
 
 * 以上代碼爲感知器算法的核心
 * 其中`perceptronOutput = sum( Model.weights .* inputObservation, ACROSS ) + Model.bias;`計算了`g(x) = w'*x+w0`
@@ -734,7 +734,7 @@ end % outer loop
 
 ### LS.m代碼分析：
 
-````
+```
 m(:,1)=[0 0 0 0 0]';
 m(:,2)=[1 1 1 1 1]';
 S=[.9 .3 .2 .05 .02; 
@@ -743,10 +743,10 @@ S=[.9 .3 .2 .05 .02;
      .05 .2 .015 .8 .01; 
      .02 .05 .07 .01 .75];
 P=[1/2 1/2];
-````
+```
 * 此段爲設置題目要求的Gauss Distribution的mean和covariance
 
-````
+```
 % Generate X1 and the required class labels
 N1=200;
 randn('seed',0)
@@ -758,22 +758,22 @@ N2=200;
 randn('seed',100)
 X2=[mvnrnd(m(:,1),S,fix(N2/2)); mvnrnd(m(:,2),S,N2-fix(N2/2))]';
 z2=[ones(1,fix(N2/2)) 2*ones(1,N2-fix(N2/2))];
-````
+```
 
 * 這一段爲生成X1,X2
 * 爲了數據的可再現，代碼中還使用了固定的隨機數種子
 
-````
+```
 % Compute the Bayesian classification error based on X2
 S_true(:,:,1)=S;
 S_true(:,:,2)=S;
 [z]=bayes_classifier(m,S_true,P,X2);
 err_Bayes_true=sum(z~=z2)/sum(N2)
-````
+```
 
 * 這一段使用了bayes算法進行分類，並計算了它的正確率
 
-````
+```
 % 2. Augment the data vectors of X1 
 X1=[X1; ones(1,sum(N1))];
 y1=2*z1-3;
@@ -782,25 +782,25 @@ y1=2*z1-3;
 X2=[X2; ones(1,sum(N2))];
 y2=2*z2-3;
 
-````
+```
 
 * 這一段將 `X1`, `X2` 增廣化
 
-````
+```
 % Compute the classification error of the LS classifier based on X2
 [w]=SSErr(X1,y1,0);
 SSE_out=2*(w'*X2>0)-1;
 err_SSE=sum(SSE_out.*y2<0)/sum(N2)
-````
+```
 
 * 這一段使用X1對SSE算法進行訓練，使用它對X2進行分類，並計算了正確率
 
 ### SSErr.m代碼分析：
 
-````
+```
 [l,N]=size(X);
 w=inv(X*X'+C*eye(l))*(X*y');
-````
+```
 
 * SSE本質上就只做了`a = inv(Y'*Y)*Y'*b`這個公式的事情，求得的解，即爲分類
 
@@ -808,7 +808,7 @@ w=inv(X*X'+C*eye(l))*(X*y');
 
 ### * 代碼分析：
 
-````
+```
 % This example deals with 2 classes
 c1=[1 2;2 3;3 3;4 5;5 5]  % the first class 5 observations
 c2=[1 0;2 1;3 1;3 2;5 3;6 5] % the second class 6 observations
@@ -822,11 +822,11 @@ n2=size(c2,1)
 %Mean of each class
 mu1=mean(c1)
 mu2=mean(c2)
-````
+```
 
 * 生成數據，計算各自的mean
 
-````
+```
 % Center the data (data-mean)
 d1=c1-repmat(mu1,size(c1,1),1)
 d2=c2-repmat(mu2,size(c2,1),1)
@@ -839,7 +839,7 @@ invsw=inv(sw)
 
 % in case of two classes only use v
  v=invsw*(mu1-mu2)'
-````
+```
 
 * d1的計算即，`x(j)-m1`的公式，d2同理
 * s1就是原公式中的前半部分，`sum((x(j)-m1)(x(j)-m1)')`，s2也同理
@@ -847,13 +847,168 @@ invsw=inv(sw)
 * invsw爲sw的逆矩陣
 * 由`w`正比於`inv(sw) * (m2-m1)`得到代碼中的`v`
 
-````
+```
 % project the data of the first and second class respectively
 y2=c2*v
 y1=c1*v
-````
+```
 
 * 完成對`c1`, `c2`的投影
 
 # <center>實驗5</center>
+
+# <center>實驗6</center>
+## * 實驗 6.1
+
+### * 代碼：
+```
+function dataTag = kNN(train, trainTag, k, data)
+
+% FUNCTION
+%  dataTag = kNN(train, trainTag, k, data)
+% Use k-Nearest-Neighbor classifying algorithm to classify data
+%
+% INPUT ARGUMENTS:
+%  s1 is the number of features in the matrix
+%  s2 is the number of Training Data provided
+%  s3 is the number of Classifiying Data provided
+%
+%  train: s1*s2 matrix, the training data
+%  trainTag: 1*s2 matrix, the training data tag naming the categories
+%  k: the results should be splited into k categories
+%  data: s1*s3 matrix, the data to be classified
+% OUTPUT ARGUMENTS:
+%  dataTag: 1*s3 matrix, the corresponding categories of data
+
+s2 = size(train, 2);
+s3 = size(data, 2);
+
+% the returning dataTag
+dataTag = zeros(1, s3);
+
+% distanceList is the temporary saving for Euclidean Distance List
+% between data(:, i) and every training data
+distanceList = zeros(1, s2);
+
+% realk is the real k, aka number of categories, used in the program
+realk = min([k s2]);
+
+for i = 1 : s3
+    % compute distance between data(:, i) and every training data
+    vdata = data(:, i)';
+    for j = 1 : s2
+        % compute Euclidean Distance
+        %distanceList(1, j) = norm(train(:, j)' - data(:, i)');
+        vsub = train(:, j)' - vdata;
+        distanceList(1, j) = (vsub * vsub');
+    end
+    % sort the distance, and get the indexes
+    [~, index] = sort(distanceList, 'descend');
+
+    tagMap = containers.Map('KeyType', 'int64', 'ValueType', 'int64');
+    for kk = 1 : realk
+        tag = trainTag(1, index(1, kk));
+        if tagMap.isKey(tag) == 0
+            tagMap(tag) = 0;
+        end
+
+        tagMap(tag) = tagMap(tag) + 1;
+    end
+
+    % terrible matlab
+    values = tagMap.values;
+    values = [values{:}];
+    [~, max_value_index] = max(values);
+    keys = tagMap.keys;
+    dataTag(1, i) = keys{max_value_index};
+end
+
+end
+```
+
+### * 實驗結果：
+
+```
+homework6_1
+
+pr_err =
+
+    0.8596
+```
+
+## * 實驗 6.2
+
+### * 代碼：
+
+```
+function [center, label] = k_means(X, center_init)
+% FUNCTION
+%  [center, label] = k_means(X, center_init)
+%  This is k-means clustering algorithm
+% INPUT ARGUMENTS:
+%  s1 is the number of features in the input data matrix
+%  s2 is the number of data in data matrix
+%  s3 is the number of categories to be seperated, aka the 'k'
+%
+%  X: s1*s2 matrix, input data matrix
+%  center_init: s1*s3 matrix, initial center guess matrix
+% OUTPUT ARGUMENTS:
+%  center: s1*s2 matrix, category center of corresponding data in X
+%  label: 1*s2 vector, label of corresponding data in X
+
+s1 = size(X, 1);
+s2 = size(X, 2);
+s3 = size(center_init, 2);
+
+center = zeros(s1, s2);
+label = zeros(1, s2);
+
+center_iter = center_init;
+
+% change_flag indicates whether center and label are changed in the loop
+change_flag = 1;
+
+while change_flag == 1
+    change_flag = 0;
+
+    % for every data
+    for i = 1 : s2
+        min_dist = inf;
+        min_index = 0;
+
+        % for every center
+        for j = 1 : s3
+            % calculate the distance between every data and every center
+            distance = norm(center_iter(:, j) - X(:, i));
+            if distance < min_dist
+                min_dist = distance;
+                min_index = j;
+            end
+        end
+        
+        % if it is changed
+        if label(1, i) ~= min_index
+            change_flag = 1;
+            label(1, i) = min_index;
+        end
+    end
+
+    % for every category, aka every center
+    for i = 1 : s3
+        points_in_category = find(label == i);
+        center_iter(:, i) = mean(X(:, points_in_category)')';
+    end
+end
+
+for i = 1 : s2
+    center(:, i) = center_iter(:, label(1, i));
+end
+
+end
+```
+### * 實驗結果：
+
+![實驗6.2 圖1](Pictures/0007.png)
+
+![實驗6.2 圖2](Pictures/0008.png)
 
