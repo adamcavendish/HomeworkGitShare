@@ -34,9 +34,9 @@ for i = 1 : s3
     vdata = data(:, i)';
     for j = 1 : s2
         % compute Euclidean Distance
-        %distanceList(1, j) = norm(train(:, j)' - data(:, i)');
-        vsub = train(:, j)' - vdata;
-        distanceList(1, j) = (vsub * vsub');
+        distanceList(1, j) = norm(train(:, j)' - vdata);
+        %vsub = train(:, j)' - vdata;
+        %distanceList(1, j) = (vsub * vsub');
     end
     % sort the distance, and get the indexes
     [~, index] = sort(distanceList, 'descend');

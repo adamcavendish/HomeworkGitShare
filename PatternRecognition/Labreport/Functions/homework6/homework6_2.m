@@ -23,7 +23,25 @@ X=[X noise];
 figure(1), plot(X(1,:),X(2,:),'.b')
 figure(1), axis equal
 
-% To apply the k-means algorithm  
+% ------------------------------------------
+% To apply the k-means algorithm to 3 groups
+m=3;
+[l,N]=size(X);
+rand('seed',0)
+center_ini=rand(l,m);
+[center,label]=k_means(X,center_ini);
+
+% Plot the clusters
+figure(m), hold on
+figure(m), plot(X(1,label==1),X(2,label==1),'r.',...
+X(1,label==2),X(2,label==2),'g*',X(1,label==3),X(2,label==3),'bo',...
+X(1,label==4),X(2,label==4),'cx',X(1,label==5),X(2,label==5),'md',...
+X(1,label==6),X(2,label==6),'yp',X(1,label==7),X(2,label==7),'ks')
+figure(m), plot(center(1,:),center(2,:),'k+')
+figure(m), axis equal
+
+% ------------------------------------------
+% To apply the k-means algorithm to 4 groups
 m=4;
 [l,N]=size(X);
 rand('seed',0)
@@ -31,11 +49,28 @@ center_ini=rand(l,m);
 [center,label]=k_means(X,center_ini);
 
 % Plot the clusters
-figure(2), hold on
-figure(2), plot(X(1,label==1),X(2,label==1),'r.',...
+figure(m), hold on
+figure(m), plot(X(1,label==1),X(2,label==1),'r.',...
 X(1,label==2),X(2,label==2),'g*',X(1,label==3),X(2,label==3),'bo',...
 X(1,label==4),X(2,label==4),'cx',X(1,label==5),X(2,label==5),'md',...
 X(1,label==6),X(2,label==6),'yp',X(1,label==7),X(2,label==7),'ks')
-figure(2), plot(center(1,:),center(2,:),'k+')
-figure(2), axis equal
+figure(m), plot(center(1,:),center(2,:),'k+')
+figure(m), axis equal
+
+% ------------------------------------------
+% To apply the k-means algorithm to 5 groups
+m=5;
+[l,N]=size(X);
+rand('seed',0)
+center_ini=rand(l,m);
+[center,label]=k_means(X,center_ini);
+
+% Plot the clusters
+figure(m), hold on
+figure(m), plot(X(1,label==1),X(2,label==1),'r.',...
+X(1,label==2),X(2,label==2),'g*',X(1,label==3),X(2,label==3),'bo',...
+X(1,label==4),X(2,label==4),'cx',X(1,label==5),X(2,label==5),'md',...
+X(1,label==6),X(2,label==6),'yp',X(1,label==7),X(2,label==7),'ks')
+figure(m), plot(center(1,:),center(2,:),'k+')
+figure(m), axis equal
 
