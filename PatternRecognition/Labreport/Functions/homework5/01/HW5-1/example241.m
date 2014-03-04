@@ -22,6 +22,7 @@ y2=[ones(1,points_per_class(1)) -ones(1,points_per_class(2))];
 kernel='linear';
 kpar1=0;
 kpar2=0;
+C=1000;
 C=0.1; 
 % C=0.2;
 % C= 0.5;

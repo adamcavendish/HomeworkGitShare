@@ -1,0 +1,52 @@
+# <center>![Logo](../Pictures/Logo.jpg)</center>
+
+# <center>上海大學</center>
+
+# <center>SHANGHAI UNIVERSITY</center>
+
+---
+
+# <center>模式識別實驗報告</center>
+
+## <center>學院：<u>計算機工程與科學學院</u><center>
+
+## <center>院系：<u>計算機科學與技術</u></center>
+
+## <center>學號: <u>11122057</u></center>
+
+## <center>姓名: <u>楊瑒</u></center>
+
+## <center>教師：<u>王路</u></center>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+---
+
+### Online version:
+
+[https://github.com/adamcavendish/HomeworkGitShare/blob/master/PatternRecognition/Labreport/11122057Yangyang.mkd](https://github.com/adamcavendish/HomeworkGitShare/blob/master/PatternRecognition/Labreport/11122057Yangyang.mkd)
+
