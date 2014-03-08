@@ -1147,6 +1147,7 @@ Accuracy = 96% (72/75) (classification)
 ```
 
 # <center>實驗6</center>
+
 ## 實驗 6.1
 
 ### 代碼：
@@ -1298,6 +1299,7 @@ end
 ```
 
 ### 實驗結果：
+
 * 未分類圖:
     * ![實驗6.2 未分類圖](Pictures/0007.png)
 * 3類圖:
@@ -1306,4 +1308,68 @@ end
     * ![實驗6.2 4類圖](Pictures/0009.png)
 * 5類圖:
     * ![實驗6.2 5類圖](Pictures/0010.png)
+
+# <center>實驗7</center>
+
+## 實驗 7.1.1
+
+* 對於`pca_fun.m`的解釋:
+    * 大多數東西看看註釋也就明白了，或者變量名就明白了
+    * `explained`: 指的是這個緯度中的點 (feature) 所提供的信息的比率，
+或者說是這個緯度的離散程度所佔所有緯度的離散程度的比率。
+源碼中計算`explained`的部分是`explain=eigenval/sum(eigenval)`，也很簡潔易懂。
+    * `Y`: `Y`是`X`變換之後的矩陣，即`Y=A*X`
+
+## 實驗結果
+
+* Var(X軸) = 0.3, Cov = 0.2; X1的Var(Y) = 1, X2的Var(Y) = 9的情況下：
+    * X1圖:
+    * ![X1](Pictures/0024.png)
+    * X2圖:
+    * ![X2](Pictures/0025.png)
+
+## 實驗7.1.2
+
+* 這個實驗主要展現了PCA算法的缺陷：沒有將標籤納入考慮範圍
+* 對於標籤1（紅色）和標籤2（藍色）的數據，若將其投影到X軸則能非常方便地劃分開來，而使用了PCA算法
+之後的投影方式（即投影到方差最大的那個方向上），則反而無法區分了。
+    * 直接投影到X軸：
+    * ![X軸投影](Pictures/0026.png)
+    * 投影到PCA算出的特徵向量方向：
+    * ![PCA投影](Pictures/0027.png)
+
+## 實驗7.2
+
+### 代碼就不貼了。從`EigenScript.m`看起就可以了。運行的時候也是用它。
+
+* EigenScript:Line 49: `[U, W, V] = svd(M,0);`
+    * `M`這裏追蹤上去可以看出是`(X - mean(X))`的形式，也就是`TrainingFace - mean(TrainingFace)`
+    * 羊的數學很差，所以很憂傷。以前對於這一行的svd, aka Single Value Decomposition，只知道: `A = U * W * V'`，
+所以現在要再解釋一下。
+    * 對於`U`來說，它是由`A*A'` (A乘以A的轉置) 的eigen vectors (特徵向量) 組成的。
+    * 對於`V`來說，它是由`A'*A` (A的轉置乘以A) 的eigen vectors (特徵向量) 組成的。
+    * 對於`W`來說，它是一個 diagonal matrix (只有斜線上有元素的矩陣)，這些元素是由`A*A'`或`A'*A`的
+eigen values (特徵值) 的 square root (平方根) 組成的。並且，這些值是降序排列的。
+    * 既然`M`是`(X - mean(X))`的形式，所以`svd`正好匹配了PCA算法的思路。求出來的`U`就是我們
+所需要的eigen vectors集合，代表着PCA投影的方向集合。
+* EigenScript:Line 53 ~ Line 65:
+    * 這一段代碼主要做的事情就是將上面的`W`，也就是eigen values，做一個累和，並且繪圖。
+    * 根據輸出結果：`10 PC Variance: 0.400026`, `25 PC Variance 0.599938`。
+我們可以看到使用Top 10的eigen vectors的話，只能取得40%左右的數據，而上升到Top 25的時候，就能拿到基本60%了。
+    * 所以之後選取了`k = 25`
+    * 累和的數據圖像如下：
+        * ![cvalue](Pictures/0028.png)
+* EigenScript:Line 68 ~ Line 77:
+    * 這段把Top 25的Eigen Faces都畫出來了
+    * ![Eigen Faces](Pictures/0029.png)
+* EigenScript:Line 79 ~ Line 105:
+    * 這段把第一張圖片，也就是`subject01.centerlight`，用`U`, `W`, `V`給重新繪製出來了，
+取了Top 1 ~ Top 25個特徵向量。
+    * ![Reconstruction](Pictures/0030.png)
+* EigenScript:Line 108: 這裏註釋有誤，應該是"Put all of the testing faces into one big matrix and project"
+* EigenScript:Line 118 ~ END:
+    * 用了最近鄰算法把test face和training face中最近鄰匹配起來，並繪製出來。
+    * 我們看到的下圖中第i幅圖片爲test face，第i+1幅就是它在training faces中的最近鄰。(i = 1, 3, 5 ...)
+    * ![recognition result](Pictures/0031.png)
+    * 這次測試的準確率也有：`25/32 = 78.125%` 還是非常不錯的。
 
