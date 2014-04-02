@@ -1,0 +1,80 @@
+# Longest Common String(LCS) 
+### --- Dynamic planning
+
+* Assume the LCS of X = {x_1, x_2, ..., x_m} and Y = {y_1, y_2, ..., y_m} is Z = {z_1, z_2, ..., z_k}, we can *interfer* that:</br>
+> 1_ if x_m = y_n, then z_k = x_m = y_n, and Z_(k-1) is the LCS of X_(m-1) and Y_(n-1)</br>
+> 2_ if (x_m != y_n && z_k != x_m), then Z is the LCS of X_(m-1) and Y</br>
+> 3_ if (x_m != y_n && z_k != y_n), then Z is the LCS of X and Y_(n-1)</br>
+</br>
+* Let c[i][j] is the length of LCS of X_i and Y_j.</br>
+> * when (i = 0 || j = 0), LCS of X_i and Y_j is empty. C[i][j] = 0.</br>
+> * C[i][j] = {</br>
+>       0                           i = 0, j = 0</br>
+>       c[i-1][j-1]+1               i, j > 0; x_i = y_j</br>
+>       max(c[i][j-1], c[i-1][j])   i, j > 0; x_i != y_j</br>
+>   }</br>
+
+Matrix stuffs:
+
+  | 0 B D C A B A
+-----------------
+0 | 0 0 0 0 0 0 0
+A | 0 0 0 0 1 1 1
+B | 0 1 1 1 1 2 2
+C | 0 1 1 2 2 2 2
+B | 0 1 1 2 2 3 3
+D | 0 1 2 2 2 3 3
+A | 0 1 2 2 3 3 4
+B | 0 1 2 2 3 4 4
+
+
+
+  | 0 B D C A B A
+-----------------
+0 | 0 0 0 0 0 0 0
+A | 0 n m w x
+B | 0 k l v u
+C | 0 j i o t    
+B | 0 f h g s y
+D | 0   e d r q 
+A | 0       c   p  
+B | 0         b a
+
+
+# Max Sum of Sub List
+### --- Dynamic Planning
+
+Givin' a list {a_1, a_2, ..., a_n}, what is the maximum of the sub lists??
+
+Eg:
+List: (-2, 11, -4, 13, -5, 2):
+Max = (-2) + 11 + (-4) + 13
+
+**Divide and counker**
+O(nlogn)
+
+**Dynamic Planning**
+
+### Thinking?
+_1 Assume A, B, C, D E is matrix of 5*10, 10*3, 3*12, 12*5, 5*6.
+
+
+
+
+
+
+
+
+# 0-1 Package Problem
+X_X
+
+
+
+
+
+
+
+
+
+
+

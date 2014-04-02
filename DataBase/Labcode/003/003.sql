@@ -90,6 +90,7 @@ SYSTEM echo "";
 
 SYSTEM echo "4. 检索选修课程包含1106同学所学全部课程的学生学号和姓名。";
 
+/*
 SELECT DISTINCT
 	Students.id,
 	Students.name
@@ -108,6 +109,21 @@ WHERE
 				WHERE
 					cs3.student_id = cs1.student_id AND
 					cs3.course_id = cs2.course_id));
+*/
+SELECT
+    Students.id,
+    Students.name
+FROM
+    Students
+WHERE
+    NOT EXISTS (
+        SELECT * FROM CourseSelection AS CS1 WHERE
+            CS1.student_id = '1106' AND
+            NOT EXISTS (
+                SELECT * FROM CourseSelection AS CS2 WHERE (
+                    CS2.student_id != '1106' AND
+                    CS2.student_id = Students.id AND
+                    CS2.course_id = CS1.course_id)));
 SYSTEM echo "";
 
 SYSTEM echo "5. 查询每门课程中分数最高的学生学号和学生姓名。";

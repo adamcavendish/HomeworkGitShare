@@ -8,13 +8,8 @@ NumericalToy
 Use FLENS numerical library and ROOT framework
 Updated with matlab
 
-Operating System
-============
+Assembly
+===========
 
-Nothing special
-
-Data Base
-============
-
-Nothing special
+Makefile should be rewritten. INCLUDE directory `adamcavendish` is uploaded now.
 
