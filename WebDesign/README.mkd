@@ -1,0 +1,3 @@
+# Homework for Web Design
+
+Homework requirements: [netlawcn.org](http://www.netlawcn.org/yf_2014/web2013/index.htm)
