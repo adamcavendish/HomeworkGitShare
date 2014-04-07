@@ -26,8 +26,11 @@
 }
 
 .FloatingAd {
+  margin-top: 15px;
+  position: relative;
   width: 127px;
   height: 127px;
   background-image: url(../image/github-logo.jpg);
+  cursor: pointer;
 }
 

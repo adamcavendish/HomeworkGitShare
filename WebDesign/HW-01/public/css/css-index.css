@@ -1,5 +1,4 @@
 body {
-  height: 100%;
   background-color: #D1D1D1;
   margin: 1%;
 }
@@ -18,12 +17,13 @@ div#Popup-Window {
 }
 
 div#Shadow {
-  display: block;
-  float: left;
-  background-color: #000000;
-  opacity: 0.2;
+  position: absolute;
+  top: 0%;
+  left: 0%;
   width: 100%;
   height: 100%;
+  background-color: #000000;
+  opacity: 0.2;
 }
 
 div#logo-bar {
@@ -42,13 +42,24 @@ div#NAVMenu {
   background-color: green;
 }
 
+div#Row1 {
+  width: 100%;
+  height: 100%;
+}
+
 div#News {
   float: left;
+  text-align: center;
   position: relative;
   width: 18%;
-  height: 200px;
-  background-color: #FFFFFF;
+  height: 100%;
+  background-color: #FFFDD0;
   overflow: hidden;
+}
+
+div#News h3 {
+  font-family: "Verdana";
+  text-decoration: underline;
 }
 
 div#News ul {
@@ -81,26 +92,51 @@ div#Media #dewplayer {
   margin: auto;
 }
 
+div#Row2 {
+  width: 100%;
+  height: 100%;
+}
+
 div#NewsList {
   float: left;
   width: 18%;
-  background-color: blue;
+  background-color: #00A86B;
+}
+
+div#NewsList h3 {
+  text-align: center;
+  font-family: "Verdana";
+  text-decoration: underline;
 }
 
 div#ContentDisplay {
   float: left;
   width: 60%;
-  background-color: pink;
+  height: 100%;
+  background-color: #E9FFDB;
+}
+
+div#ContentDisplay #ContentFrame {
+  width: 100%;
+  height: 100%;
+  border: 0px;
 }
 
 div#AdList {
   float: left;
   width: 18%;
-  background-color: green;
+  background-color: #BC9871;
+}
+
+div#AdList #AdTable {
+  font-family: "Verdana";
+  text-align: center;
 }
 
 div#Footer {
-  background-color: white;
+  text-align: right;
+  background-color: #836953;
+  font-size: 12px;
 }
 
 #FloatingAd1 {

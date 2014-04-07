@@ -1,6 +1,8 @@
 function hidePopupWindowAndShadow() {
     document.getElementById('Popup-Window').style.display='none';
     document.getElementById('Shadow').style.display='none';
+    $('html').css('overflow', 'auto');
+    $('body').css('overflow', 'auto');    
 }
 
 function readyResizeMap(img, map, originalWidth, originalHeight) {
@@ -37,8 +39,6 @@ function readyNavigationBar() {
     });
     $navbar.width(w);
     $navbar.css({ 'margin': 'auto' });
-
-    $('#Popup-Window').css('z-index', 1);
 }
 
 function readyNewsScrollArea() {
@@ -59,11 +59,37 @@ function readyNewsScrollArea() {
     }).trigger('mouseleave');
 }
 
+function readyAdAndListenOnScroll() {
+    function adfunc(ev) { window.open('http://www.github.com'); }
+
+    var $Ad1 = $('#FloatingAd1');
+    var $Ad2 = $('#FloatingAd2');
+    $Ad1.unbind().click(adfunc);
+    $Ad2.unbind().click(adfunc);
+
+    $(window).scroll(function() {
+        var topVal = $(document).scrollTop();
+        $Ad1.css({ top: topVal });
+        $Ad2.css({ top: topVal });
+    });
+}
+
+function readyPopupWindow() {
+    var $Shadow = $('#Shadow');
+    $('#Popup-Window').css('z-index', 1001);
+    $Shadow.css('z-index', 1000);
+    $Shadow.css({ 'width': $('body').width, 'height': $('body').height });
+    $('html').css('overflow', 'hidden');
+    $('body').css('overflow', 'hidden');
+}
+
 // --------------------------------------------------
 
 $(document).ready(function() {
     readyNavigationBar();
     readyNewsScrollArea();
+    readyAdAndListenOnScroll();
     readyResizeMap($('#BottleImg').get(0), $('#BottleMap').get(0), 1920, 1200);
+    readyPopupWindow();
 });
 
