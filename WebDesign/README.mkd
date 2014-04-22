@@ -1,3 +1,7 @@
 # Homework for Web Design
 
 Homework requirements: [netlawcn.org](http://www.netlawcn.org/yf_2014/web2013/index.htm)
+
+## For HW-02 CGI Stuffs
+* [Add Apache2 Perl Support in Ubuntu 12.04](http://blog.modest-destiny.net/linux/2014/04/08/Add-Apache2-Perl-Support-In-Ubuntu-12-04/)
+

@@ -1,0 +1,149 @@
+body {
+  background-color: #D1D1D1;
+  margin: 1%;
+}
+
+div#Popup-Window {
+  float: left;
+  background-color: #FFFFFF;
+  text-align: center;
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  top: 35%;
+  left: 35%;
+  border: 10px double #112435;
+  padding: 1%;
+}
+
+div#Shadow {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.2;
+}
+
+div#logo-bar {
+  width: 100%;
+}
+
+div#container {
+  width: 80%;
+  height: 100%;
+  margin: 0px auto;
+  background-color: #112435;
+}
+
+div#NAVMenu {
+  width: 100%;
+  background-color: green;
+}
+
+div#Row1 {
+  width: 100%;
+  height: 100%;
+}
+
+div#News {
+  float: left;
+  text-align: center;
+  position: relative;
+  width: 18%;
+  height: 100%;
+  background-color: #FFFDD0;
+  overflow: hidden;
+}
+
+div#News h3 {
+  font-family: "Verdana";
+  text-decoration: underline;
+}
+
+div#News ul {
+  list-style-type: none;
+  text-align: center;
+  top: 0px; left: 0px;
+  padding: 0px;
+}
+
+div#ImageMap {
+  float: left;
+  width: 60%;
+  padding: 0px;
+}
+
+div#ImageMap #BottleImg {
+  width: 100%;
+  height: 100%;
+}
+
+div#Media {
+  float: left;
+  width: 18%;
+}
+
+div#Media #dewplayer {
+  display: block;
+  width: 150px;
+  height: 20px;
+  margin: auto;
+}
+
+div#Row2 {
+  width: 100%;
+  height: 100%;
+}
+
+div#NewsList {
+  float: left;
+  width: 18%;
+  background-color: #00A86B;
+}
+
+div#NewsList h3 {
+  text-align: center;
+  font-family: "Verdana";
+  text-decoration: underline;
+}
+
+div#ContentDisplay {
+  float: left;
+  width: 60%;
+  height: 100%;
+  background-color: #E9FFDB;
+}
+
+div#ContentDisplay #ContentFrame {
+  width: 100%;
+  height: 100%;
+  border: 0px;
+}
+
+div#AdList {
+  float: left;
+  width: 18%;
+  background-color: #BC9871;
+}
+
+div#AdList #AdTable {
+  font-family: "Verdana";
+  text-align: center;
+}
+
+div#Footer {
+  text-align: right;
+  background-color: #836953;
+  font-size: 12px;
+}
+
+#FloatingAd1 {
+  float: left;
+}
+
+#FloatingAd2 {
+  float: right;
+}
+

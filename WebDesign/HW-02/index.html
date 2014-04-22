@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>HTML Hello World From A C++ Programmer!</title>
+    <meta charset="utf-8"/>
+    <meta name="author" content="Adam Basfop Cavendish"/>
+    <link rel="stylesheet" href="public/css/css-class.css" type="text/css"/>
+    <link rel="stylesheet" href="public/css/css-index.css" type="text/css"/>
+    <link rel="stylesheet" href="public/css/css-navigation-bar.css" type="text/css"/>
+    <script src="public/js/jquery.min.1.8.2.js"></script>
+    <script type="text/javascript" src="public/js/js-index.js"></script>
+  </head>
+
+  <body>
+    <div id="Popup-Window">
+      <h1>Hey! Greetings from Adam!</h1>
+      <br/><br/>
+      <a onclick="hidePopupWindowAndShadow()" href="#">Close</a>
+    </div>
+    <div id="Shadow"></div>
+
+    <div class="FloatingAd" id="FloatingAd1">
+      <a href="http://www.github.com"></a>
+    </div>
+
+    <div class="FloatingAd" id="FloatingAd2">
+      <a href="http://www.github.com"></a>
+    </div>
+
+    <div id="container">
+      <div id="logo-bar">
+        <span class="OSC-LOGO"></span>
+        <span class="Banner">Banner!</span>
+        <div class="divclear"></div>
+      </div>
+
+      <div id="NAVMenu">
+        <ul id="navigation-bar">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Websites</a>
+            <ul>
+              <li><a href="http://page.renren.com/601684970">上海大学开源社区</a></li>
+              <li><a href="https://github.com/">Github</a></li>
+            </ul>
+          </li>
+          <li><a href="#">About</a></li>
+          <li><a href="public/html/leave-a-message.html">Leave Message</a></li>
+        </ul>
+        <div class="divclear"></div>
+      </div>
+
+      <div id="Row1">
+        <div id="News" class="DefaultMargin">
+          <h3>Bulletin</h3>
+          <ul>
+            <li><a href='public/html/azure-bottle.html'>Azure Bottle</a><br/><br/></li>
+            <li><a href='public/html/emerald-bottle.html'>Emerald Bottle</a><br/><br/></li>
+            <li><a href='public/html/daffodil-bottle.html'>Daffodil Bottle</a><br/><br/></li>
+            <li><a href='public/html/alizarin-crimson-bottle.html'>Alizarin Crimson Bottle</a><br/><br/></li>
+            <li><a href='public/html/cerise-bottle.html'>Cerise Bottle</a><br/><br/></li>
+            <li><a href='public/html/sapphire-bottle.html'>Sapphire Bottle</a><br/><br/></li>
+          </ul>
+        </div>
+
+        <div id="ImageMap" class="DefaultMargin">
+          <img src="public/image/bottles-colorful.jpg"
+               id="BottleImg"
+               alt="Bottles Picture Not Found!"
+               usemap="#BottleMapName"/>
+        </div>
+
+        <div id="Media" class="DefaultMargin">
+          <object type="application/x-shockwave-flash"
+                  data="public/media/dewplayer/dewplayer-mini.swf"
+                  id="dewplayer" name="dewplayer">
+            <param name="wmode" value="transparent"/>
+            <param name="movie" value="public/media/dewplayer/dewplayer-mini.swf"/>
+            <param name="flashvars" value="mp3=public/media/mp3/test.mp3&autostart=1&autoreplay=1&showtime=1"/>
+          </object>
+        </div>
+
+        <div class="divclear"></div>
+      </div>
+
+      <div id="Row2">
+        <div id="NewsList" class="DefaultMargin">
+          <h3>News List</h3>
+          <ul>
+            <li><a target='ContentFrameName' href='public/html/azure-bottle.html'>
+              Azure Bottle
+            </a><br/><br/></li>
+            <li><a target='ContentFrameName' href='public/html/emerald-bottle.html'>
+              Emerald Bottle
+            </a><br/><br/></li>
+            <li><a target='ContentFrameName' href='public/html/daffodil-bottle.html'>
+              Daffodil Bottle
+            </a><br/><br/></li>
+            <li><a target='ContentFrameName' href='public/html/alizarin-crimson-bottle.html'>
+              Alizarin Crimson Bottle
+            </a><br/><br/></li>
+            <li><a target='ContentFrameName' href='public/html/cerise-bottle.html'>
+              Cerise Bottle
+            </a><br/><br/></li>
+            <li><a target='ContentFrameName' href='public/html/sapphire-bottle.html'>
+              Sapphire Bottle
+            </a><br/><br/></li>
+          </ul>
+        </div>
+        
+        <div id="ContentDisplay" class="DefaultMargin">
+          <iframe id="ContentFrame" name="ContentFrameName" src="public/html/iframe-index.html"></iframe>
+        </div>
+
+        <div id="AdList" class="DefaultMargin">
+          <table id="AdTable">
+            <thead>
+              <th colspan="2">
+                Ads Here!
+              </th>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="2">
+                  <a href="http://www.stackoverflow.com">
+                    <img src="public/image/stackoverflow.jpg" width="100%"/> 
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <a href="http://www.google.com">
+                    <img src="public/image/google.jpg" width="100%"/>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="http://www.gnu.org">
+                    <img src="public/image/gnu.png" width="50%"/>
+                  </a>
+                </td>
+                <td>
+                  <a href="http://www.apache.org">
+                    <img src="public/image/apache.gif" width="50%"/>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <a href="http://en.wikipedia.org/wiki/Main_Page">
+                    <img src="public/image/wikipedia.jpg" width="100%"/>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="divclear"></div>
+      </div>
+
+      <div id="Footer">
+        <p>Copyright 2014 Created By Adam Basfop Cavendish
+          <br/>
+          Source: 
+          <a href="https://github.com/adamcavendish/HomeworkGitShare/tree/master/WebDesign/HW-02">
+            https://github.com/adamcavendish/HomeworkGitShare/tree/master/WebDesign/HW-02
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <map name="BottleMapName" id="BottleMap">
+      <area id="AzureBottle" alt="Azure Bottle" title="Azure Bottle" href="public/html/azure-bottle.html" shape="rect" coords="102,252,310,939" style="outline:none;" target="_self"/>
+      <area id="EmeraldBottle" alt="Emerald Bottle" title="Emerald Bottle" href="public/html/emerald-bottle.html" shape="rect" coords="381,255,633,979" style="outline:none;" target="_self"/>
+      <area id="DaffodilBottle" alt="Daffodil Bottle" title="Daffodil Bottle" href="public/html/daffodil-bottle.html" shape="rect" coords="672,259,956,964" style="outline:none;" target="_self"/>
+      <area id="AlizarinCrimsomBottle" alt="Alizarin Crimson Bottle" title="Alizarin Crimson Bottle" href="public/html/alizarin-crimson-bottle.html" shape="rect" coords="992,258,1238,973" style="outline:none;" target="_self"/>
+      <area id="CeriseBottle" alt="Cerise Bottle" title="Cerise Bottle" href="public/html/cerise-bottle.html" shape="rect" coords="1302,258,1548,985" style="outline:none;" target="_self"/>
+      <area id="SapphireBottle" alt="Sapphire Bottle" title="Sapphire Bottle" href="public/html/sapphire-bottle.html" shape="rect" coords="1599,254,1845,981" style="outline:none;" target="_self"/>
+    </map>
+
+  </body>
+</html>
+

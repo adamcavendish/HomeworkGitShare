@@ -1,0 +1,37 @@
+# Install
+
+-1- On Ubuntu, you'll need to use `apt-get` to install following packages:
+
+```
+    sudo apt-get install sqlite3 libsqlite3-dev
+	sudo apt-get install libboost-dev
+    sudo apt-get install libapache2-mod-fastcgi libapache2-mod-fcgid apache2-mpm-worker
+```
+
+-2- After installation, you need to enable `fastcgi`
+
+```
+    sudo a2enmod actions fastcgi alias
+    sudo service apache2 restart
+```
+
+-3- You'll need `fastcgi++` library. url: [fastcgipp](http://www.nongnu.org/fastcgipp/)
+
+```
+    cd /tmp/
+    wget -c http://download.savannah.nongnu.org/releases/fastcgipp/fastcgi++-2.1.tar.bz2
+    tar xjf ./fastcgi++-2.1.tar.bz2
+    cd fastcgi++-2.1/
+    ./configure
+    make
+    sudo make install
+```
+
+**Note About compiler:**
+* I'm not using any `c++11` features, so any `g++` version greater than 4.6 will be fine.
+* You'll need boost version >= 1.35
+
+**Note:**
+* Please forgive me for my terrible code and of course, its bad performance, 
+cause I cannot get enough sleep these days.
+

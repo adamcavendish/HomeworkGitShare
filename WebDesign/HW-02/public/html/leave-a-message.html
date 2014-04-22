@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Leave a message here</title>
+    <meta charset="utf-8"/>
+    <meta name="author" content="Adam Basfop Cavendish"/>
+    <link rel="stylesheet" href="../css/css-leave-a-message.css" type="text/css"/>
+    <script src="../js/jquery.min.1.8.2.js"></script>
+    <script type="text/javascript" src="../js/js-leave-a-message.js"></script>
+  </head>
+  <body>
+    <div id="div-LeaveAMessageForm">
+        <form id="form-LeaveAMessageForm" name="LeaveMessageForm" method="post"
+            action="../cgi-bin/leave-a-message-form.cgi" onsubmit="return formcheck(this)">
+            Name: 
+            <input name="name" type="text" id="name"></input>
+            <br/>
+
+            E-mail:
+            <input name="email" type="text" id="email"></input>
+            <br/>
+
+            Gender:
+            <input name="gender" type="radio" value="male">male</input>
+            <input name="gender" type="radio" value="female">female</input>
+            <br/>
+            
+            Hobby:
+            <input name="hobby-football" type="checkbox" value="football">football</input>
+            <input name="hobby-music" type="checkbox" value="music">music</input>
+            <input name="hobby-dancing" type="checkbox" value="dancing">dancing</input>
+            <input name="hobby-comics" type="checkbox" value="comics">comics</input>
+            <br/>
+
+            Please leave a message here:
+            <br/>
+            <textarea name="messageArea" rows="10" cols="50" wrap="true">
+                I would like to comment ...
+            </textarea>
+            <br/>
+
+            <input name="submit" value="Submit!" type="submit"></input>
+            <input name="reset" value="Reset!" type="reset"></input>
+        </form>
+    </div>
+
+    <hr/>
+
+    <div><button type="button" onClick="showAllMessages()">Show All Messages</button></div>
+    <div id=div-allMessages></div>
+
+  </body>
+</html>

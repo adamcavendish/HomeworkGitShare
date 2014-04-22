@@ -1,0 +1,16 @@
+div {
+    text-align: center;
+}
+
+div form#div-LeaveAMessageForm {
+    display: inline-block;
+    text-align: center;
+}
+
+#div-allMessages {
+}
+
+.table-allMessages {
+    margin: 0 auto;
+}
+

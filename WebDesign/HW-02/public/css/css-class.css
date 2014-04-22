@@ -1,0 +1,36 @@
+.OSC-LOGO {
+  display: block;
+  width: 50px;
+  height: 50px;
+  float: left;
+  background-image: url(../image/OSC-LOGO-small.jpg);
+}
+
+.Banner {
+  text-align: center;
+  font-weight: bold;
+
+  display: block;
+  width: 420px;
+  height: 50px;
+  float: right;
+  background-image: url(../image/Banner.png);
+}
+
+.divclear {
+  clear: both;
+}
+
+.DefaultMargin {
+  margin: 0.5% 0.5% 0.5% 0.5%;
+}
+
+.FloatingAd {
+  margin-top: 15px;
+  position: relative;
+  width: 127px;
+  height: 127px;
+  background-image: url(../image/github-logo.jpg);
+  cursor: pointer;
+}
+
