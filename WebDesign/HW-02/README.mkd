@@ -27,11 +27,34 @@
     sudo make install
 ```
 
+-4- Build my app ( cause I took the C++ hard way, well, probably LLVM will someday take care of the JIT-ing C++, but not now )
+
+```
+    cd public/cgi-bin/
+    make
+```
+
+-5- You need to link the `HW-02` dir into `/var/www/` to get it working
+
+```
+    sudo ln -s PATH_TO_HW-02 /var/www/HW-02
+    sudo service apache2 restart
+```
+
+Then, you may use your favourite browser to fire-up the link `http://localhost/HW-02/index.html`
+
+Hit the `Leave Message` on the navigation-bar and it'll direct you to the page presenting `Homework 02`
+
+You may get the demo page looking like this:
+
+![DemoPage](./pictures/demo.png)
+
 **Note About compiler:**
 * I'm not using any `c++11` features, so any `g++` version greater than 4.6 will be fine.
 * You'll need boost version >= 1.35
 
 **Note:**
-* Please forgive me for my terrible code and of course, its bad performance, 
-cause I cannot get enough sleep these days.
+* Please forgive me for my terrible code and of course, its bad performance, cause I cannot get enough sleep these days.
 
+**Issue**
+* Put up an issue [adamcavendish-github](https://github.com/adamcavendish/HomeworkGitShare) if you have any problems (be specified please.)
