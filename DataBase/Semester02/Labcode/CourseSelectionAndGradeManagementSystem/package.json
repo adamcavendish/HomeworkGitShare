@@ -1,0 +1,25 @@
+{
+    "name": "CourseSelectionAndGradeManagementSystem",
+    "description": "Course Selection And Grade Management System",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "*",
+        "express-namespace": "*",
+        "express-resource": "*",
+        "static-favicon": "*",
+        "morgan": "*",
+        "cookie-parser": "*",
+        "body-parser": "*",
+        "debug": "*",
+        "response-time": "*",
+        "errorhandler": "*",
+        "jade": "*",
+        "iniparser": "*",
+        "mysql": "*"
+    }
+}
+

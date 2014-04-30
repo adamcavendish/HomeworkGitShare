@@ -1,0 +1,44 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible' content='IE-edge')
+        meta(name='viewport' content='width=device-width initial-scale=1')
+        title Course Selection And Grade Management System
+        
+        link(rel='stylesheet' href='bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet' href='css/index.css')
+    body
+        div(class='container theme-showcase' role='main')
+            div(class='jumbotron')
+                h1 Course Selection and Grade Management System
+                p.
+                    This is a student management system with MySQL Database backend and high-performance NodeJS server side.
+                p.
+                    Enjoy selecting courses, boys and girls!
+                p.
+                    Have fun with grades, professors!
+
+
+            div(class='row')
+                div(class='center-block')
+                    form(class='form-horizontal' method='post' action='/login')
+                        fieldset
+                            legend Login
+                            
+                            div(class='form-group')
+                                label(class='col-md-4 control-label' for='username') Username
+                                div(class='col-md-5')
+                                    input(id='username' name='username' type='text' placeholder='username' class='form-control input-md')
+                            div(class='form-group')
+                                label(class='col-md-4 control-label' for='password') Password
+                                div(class='col-md-5')
+                                    input(id='password' name='password' type='password' placeholder='password' class='form-control input-md')
+                            div(class='form-group')
+                                div(class='col-md-8 col-md-offset-4')
+                                    button(id='login' name='login' class='btn btn-primary' type='submit') Login
+                                    button(id='reset' name='reset' class='btn btn-default' type='reset') Reset
+                                    
+        script(src='jquery/dist/jquery.min.js')
+        script(src='angular/angular.js')
+        script(src='bootstrap/dist/js/bootstrap.min.js')

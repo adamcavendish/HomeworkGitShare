@@ -1,0 +1,17 @@
+{
+    "development": {
+        "db_host": "localhost",
+        "db_user": "root",
+        "db_pass": "123_abc*#qt",
+        "db_database": "CourseSelectionAndGradeManagement",
+        "port": 3000
+    },
+    "production": {
+        "db_host": "192.168.0.1",
+        "db_user": "myappdb",
+        "db_pass": "password",
+        "db_database": "CourseSelectionAndGradeManagement",
+        "port": 3000
+    }
+}
+

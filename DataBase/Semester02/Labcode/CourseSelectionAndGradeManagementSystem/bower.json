@@ -1,0 +1,25 @@
+{
+  "name": "CourseSelectionAndGradeManagementSystem",
+  "version": "0.0.1",
+  "homepage": "https://github.com/adamcavendish/HomeworkGitShare",
+  "authors": [
+    "Adam Cavendish <GetbetterABC@yeah.net>"
+  ],
+  "description": "Course Selection And Grade Management System",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1",
+    "angular": "~1.2.16",
+    "jquery": "~2.1.0",
+    "angular-route": "~1.2.16",
+    "angular-mocks": "~1.2.16"
+  }
+}
