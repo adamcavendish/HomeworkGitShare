@@ -1,0 +1,23 @@
+form(id='AddCollege_form' class='form-horizontal' role='form')
+    legend Add A College
+    div(class='form-group')
+        label(for='inputCollegeID' class='col-sm-2 control-label') ID
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCollegeID' id='inputCollegeID' placeholder='ID')
+    div(class='form-group')
+        label(for='inputCollegeName' class='col-sm-2 control-label') Name
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCollegeName' id='inputCollegeName' placeholder='Name')
+    div(class='form-group')
+        label(for='inputCollegeAddr' class="col-sm-2 control-label") Address
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCollegeAddr' id='inputCollegeAddr' placeholder='Address')
+    div(class='form-group')
+        label(for='inputCollegeTelephone' class='col-sm-2 control-label') Telephone
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCollegeTelephone' id='inputCollegeTelephone' placeholder='Telephone')
+    div(class='form-group')
+        div(class='col-sm-offset-2 col-sm-10')
+            button(id='AddCollege_btn' class='btn btn-primary' onclick='AddCollege_btnClick()') Add
+            span &nbsp
+            button(type='reset' class='btn btn-default') Reset

@@ -1,0 +1,27 @@
+form(id='AddCourse_form' class='form-horizontal' role='form')
+    legend Add A Course
+    div(class='form-group')
+        label(for='inputCourseID' class='col-sm-2 control-label') ID
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCourseID' id='inputCourseID' placeholder='ID')
+    div(class='form-group')
+        label(for='inputCourseName' class='col-sm-2 control-label') Name
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCourseName' id='inputCourseName' placeholder='Name')
+    div(class='form-group')
+        label(for='inputCourseCredit' class="col-sm-2 control-label") Credit
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCourseCredit' id='inputCourseCredit' placeholder='Credit')
+    div(class='form-group')
+        label(for='inputCourseClassHours' class='col-sm-2 control-label') ClassHours
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCourseClassHours' id='inputCourseClassHours' placeholder='Class Hours')
+    div(class='form-group')
+        label(for='inputCourseCollege' class='col-sm-2 control-label') CollegeID
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCourseCollege' id='inputCourseCollege' placeholder='CollegeID')
+    div(class='form-group')
+        div(class='col-sm-offset-2 col-sm-10')
+            button(id='AddCourse_btn' class='btn btn-primary' onclick='AddCourse_btnClick()') Add
+            span &nbsp
+            button(type='reset' class='btn btn-default') Reset

@@ -13,31 +13,29 @@ html(lang="en")
             div(class='jumbotron')
                 h1 Course Selection and Grade Management System
                 p.
-                    This is a student management system with MySQL Database backend and high-performance NodeJS server side.
+                    This is a student management system with MongoDB Database backend and high-performance NodeJS server side.
                 p.
                     Enjoy selecting courses, boys and girls!
                 p.
                     Have fun with grades, professors!
-
-
             div(class='row')
                 div(class='center-block')
                     form(class='form-horizontal' method='post' action='/login')
-                        fieldset
-                            legend Login
-                            
-                            div(class='form-group')
-                                label(class='col-md-4 control-label' for='username') Username
-                                div(class='col-md-5')
-                                    input(id='username' name='username' type='text' placeholder='username' class='form-control input-md')
-                            div(class='form-group')
-                                label(class='col-md-4 control-label' for='password') Password
-                                div(class='col-md-5')
-                                    input(id='password' name='password' type='password' placeholder='password' class='form-control input-md')
-                            div(class='form-group')
-                                div(class='col-md-8 col-md-offset-4')
-                                    button(id='login' name='login' class='btn btn-primary' type='submit') Login
-                                    button(id='reset' name='reset' class='btn btn-default' type='reset') Reset
+                        legend Login
+
+                        div(class='form-group')
+                            label(class='col-md-4 control-label' for='username') Username
+                            div(class='col-md-5')
+                                input(id='username' name='username' type='text' placeholder='username' class='form-control input-md')
+                        div(class='form-group')
+                            label(class='col-md-4 control-label' for='password') Password
+                            div(class='col-md-5')
+                                input(id='password' name='password' type='password' placeholder='password' class='form-control input-md')
+                        div(class='form-group')
+                            div(class='col-md-8 col-md-offset-4')
+                                button(id='login' name='login' class='btn btn-primary' type='submit') Login
+                                &nbsp
+                                button(id='reset' name='reset' class='btn btn-default' type='reset') Reset
                                     
         script(src='jquery/dist/jquery.min.js')
         script(src='angular/angular.js')

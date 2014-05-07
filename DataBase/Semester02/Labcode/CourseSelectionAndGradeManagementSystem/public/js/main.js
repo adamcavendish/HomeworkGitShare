@@ -7,4 +7,3 @@ window.onload = function() {
 $(document).ready(function() {
    $('#smile').html(':)');
 });
-

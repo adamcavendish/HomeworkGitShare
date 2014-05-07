@@ -1,0 +1,37 @@
+doctype html
+html(lang="en" ng-app='usersApp' ng-controller='usersCtrl')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible' content='IE-edge')
+        meta(name='viewport' content='width=device-width initial-scale=1')
+        title Users
+
+        link(rel='stylesheet' href='bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet' href='css/users.css')
+        
+    body
+        div(class='container')
+            div(class='row')
+                h1 All User Information List
+            div(class='row')
+                div(class='col-sm-3' ng-repeat='user in users')
+                    div(class='panel panel-primary')
+                        div(class='panel-heading')
+                            div(class='panel-title')
+                                strong {{user.name}}
+                        div(class='panel-body')
+                            p id: {{user.id}}
+                            p gender: {{user.gender === true ? 'Male' : 'Female'}}
+                            p age: {{user.age}}
+                            p dept: {{user.dept}}
+                            p logn: {{user.logn}}
+                            p pswd: {{user.pswd}}
+            div(class='row')
+                div(class='well')
+                    p(class='text-center') {{users | json}}
+        
+        script(src='jquery/dist/jquery.min.js')
+        script(src='angular/angular.js')
+        script(src='bootstrap/dist/js/bootstrap.min.js')
+        
+        script(src='js/users-angular.js')

@@ -1,0 +1,41 @@
+form(id='AddTeacher_form' class='form-horizontal' role='form')
+    legend Add A Teacher
+    div(class='form-group')
+        label(for='inputTeacherID' class='col-sm-2 control-label') ID
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputTeacherID' id='inputTeacherID' placeholder='ID')
+    div(class='form-group')
+        label(for='inputTeacherName' class='col-sm-2 control-label') Name
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputTeacherName' id='inputTeacherName' placeholder='Name')
+    div(class='form-group')
+        label(for='inputTeacherGender' class="col-sm-2 control-label") Gender
+        div(class='radio col-sm-5')
+            label
+                input(type='radio' name='genderRadios' id='inputTeacherGenderMale' value='true' checked)
+                span Male
+        div(class='radio col-sm-5')
+            label
+                input(type='radio' name='genderRadios' id='inputTeacherGenderFemale' value='false')
+                span Female
+    div(class='form-group')
+        label(for='inputTeacherAge' class='col-sm-2 control-label') Age
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputTeacherAge' id='inputTeacherAge' placeholder='Age')
+    div(class='form-group')
+        label(for='inputTeacherCollege' class='col-sm-2 control-label') CollegeID
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputTeacherCollege' id='inputTeacherCollege' placeholder='CollegeID')
+    div(class='form-group')
+        label(for='inputTeacherLogn' class='col-sm-2 control-label') Logn
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputTeacherLogn' id='inputTeacherLogn' placeholder='Logn')
+    div(class='form-group')
+        label(for='inputTeacherPswd' class='col-sm-2 control-label') Pswd
+        div(class='col-sm-10')
+            input(type='password' class='form-control' name='inputTeacherPswd' id='inputTeacherPswd' placeholder='Pswd')
+    div(class='form-group')
+        div(class='col-sm-offset-2 col-sm-10')
+            button(id='AddTeacher_btn' class='btn btn-primary' onclick='AddTeacher_btnClick()') Add
+            span &nbsp
+            button(type='reset' class='btn btn-default') Reset

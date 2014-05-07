@@ -1,0 +1,23 @@
+form(id='AddOpenCourse_form' class='form-horizontal' role='form')
+    legend Add A New Opened Courses
+    div(class='form-group')
+        label(for='inputOpenCourseSemester' class='col-sm-2 control-label') Semester
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputOpenCourseSemester' id='inputOpenCourseSemester' placeholder='Semester')
+    div(class='form-group')
+        label(for='inputOpenCourseCourseID' class='col-sm-2 control-label') CourseID
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputOpenCourseCourseID' id='inputOpenCourseCourseID' placeholder='CourseID')
+    div(class='form-group')
+        label(for='inputOpenCourseTeacherID' class="col-sm-2 control-label") TeacherID
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputOpenCourseTeacherID' id='inputOpenCourseTeacherID' placeholder='Teacher ID')
+    div(class='form-group')
+        label(for='inputOpenCourseTime' class='col-sm-2 control-label') Time
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputOpenCourseTime' id='inputOpenCourseTime' placeholder='Time')
+    div(class='form-group')
+        div(class='col-sm-offset-2 col-sm-10')
+            button(id='AddOpenCourse_btn' class='btn btn-primary' onclick='AddOpenCourse_btnClick()') Add
+            span &nbsp
+            button(type='reset' class='btn btn-default') Reset

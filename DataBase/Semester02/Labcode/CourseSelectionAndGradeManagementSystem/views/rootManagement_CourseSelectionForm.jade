@@ -1,0 +1,27 @@
+form(id='AddCourseSelection_form' class='form-horizontal' role='form')
+    legend Select A New Course
+    div(class='form-group')
+        label(for='inputCourseSelectionStudentId' class='col-sm-2 control-label') StudentID
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCourseSelectionStudentId' id='inputCourseSelectionStudentId' placeholder='Student ID')
+    div(class='form-group')
+        label(for='inputCourseSelectionSemester' class='col-sm-2 control-label') Semester
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCourseSelectionSemester' id='inputCourseSelectionSemester' placeholder='Semester')
+    div(class='form-group')
+        label(for='inputCourseSelectionCourseID' class='col-sm-2 control-label') CourseID
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCourseSelectionCourseID' id='inputCourseSelectionCourseID' placeholder='Course ID')
+    div(class='form-group')
+        label(for='inputCourseSelectionTeacherID' class='col-sm-2 control-label') TeacherID
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCourseSelectionTeacherID' id='inputCourseSelectionTeacherID' placeholder='Teacher ID')
+    div(class='form-group')
+        label(for='inputCourseSelectionOverallScore' class='col-sm-2 control-label') OverallScore
+        div(class='col-sm-10')
+            input(type='text' class='form-control' name='inputCourseSelectionOverallScore' id='inputCourseSelectionOverallScore' placeholder='OverallScore')
+    div(class='form-group')
+        div(class='col-sm-offset-2 col-sm-10')
+            button(id='AddCourseSelection_btn' class='btn btn-primary' onclick='AddCourseSelection_btnClick()') Add
+            span &nbsp
+            button(type='reset' class='btn btn-default') Reset

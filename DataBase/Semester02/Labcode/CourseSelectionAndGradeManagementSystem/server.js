@@ -10,17 +10,18 @@ var responseTime = require('response-time');
 var errorhandler = require('errorhandler');
 var http = require('http');
 var path = require('path');
-var mysql = require('mysql');
-var connect = null;
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/CourseSelectionAndGradeManagementSystem')
 
 var app = express();
-var router = require('./router/router.js');
+var router = require('./server/router.js');
 var testMain = require('./testMain.js');
 
 // global configs
 var config = require('./config.json')[app.get('env')];
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.set('config', config);
 
 // static dirs
 app.use(express.static('./public'));
@@ -42,10 +43,11 @@ app.use(favicon());
 app.use(morganLogger('dev')); // logger
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+app.use(cookieParser({ secret: 'adamsheep'}));
 app.use(responseTime());
 app.use(errorhandler());
 
+/*
 // MySQL Connect
 connect = mysql.createConnection({
     host: config.db_host,
@@ -53,15 +55,49 @@ connect = mysql.createConnection({
     password: config.db_pass,
     database: config.db_database
 });
-connect.connect();
 app.use(function(req, res, next) {
-    req.db = connect;
+    req.session.db = mysql;
+    req.session.connect = connect;
+    next();
+});
+*/
+
+// MongoDB
+var db = mongoose.connection;
+var schema = null;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+    console.log('MongoDB connected!');
+    schema = require('./server/dbSchema.js')(mongoose);
+});
+
+app.use(function(req, res, next) {
+    req.db = db;
+    req.mongoose = mongoose;
+    req.schema = schema;
     next();
 });
 
-// router
-app.route('/').get(router.index);
-app.route('/login').post(router.login);
+// Error handler
+if(app.get('env') === 'production') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: {}
+        });
+    });
+} else {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+}//if-else
+
+router(app);
 
 var server = app.listen(config.port, function() {
     console.log('Listening on port %d', server.address().port);

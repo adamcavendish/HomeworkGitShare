@@ -10,6 +10,7 @@
         "express": "*",
         "express-namespace": "*",
         "express-resource": "*",
+        "express-session": "*",
         "static-favicon": "*",
         "morgan": "*",
         "cookie-parser": "*",
@@ -18,8 +19,7 @@
         "response-time": "*",
         "errorhandler": "*",
         "jade": "*",
-        "iniparser": "*",
-        "mysql": "*"
+        "mongoose": "*"
     }
 }
 
