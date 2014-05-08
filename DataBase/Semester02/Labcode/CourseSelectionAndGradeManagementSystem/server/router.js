@@ -1,11 +1,14 @@
 // router.js
 
-var cur_user = null;
-var cur_user_attr = null; // 0 for Student, 1 for Teacher, 2 for root
+// user_attr: 2 for root, 1 for teacher, 0 for student
 
 module.exports = function(app) {
     app.route('/').get(function(req, res) {
-        res.render('index');
+        if(req.cookies.user) {
+            res.render('home');
+        } else {
+            res.render('index');
+        }//if-else
     });
     
     app.route('/users').get(function(req, res) {
@@ -13,6 +16,8 @@ module.exports = function(app) {
     });
     
     app.route('/login').post(function(req, res) {
+        var cookieAge = 60 * 1000; // 1000 mins
+        
         var m_user = req.body.username;
         var m_pswd = req.body.password;
         var config = app.get('config');
@@ -20,14 +25,14 @@ module.exports = function(app) {
         var loginEror = false;
 
         if(m_user === config.db_user && m_pswd === config.db_pass) {
-            cur_user = m_user;
-            cur_user_attr = 2;
+            res.cookie('user', m_user, { maxAge: cookieAge });
+            res.cookie('user_attr', '2', { maxAge: cookieAge });
         } else if(m_user[0] === 'S') {
             // login with Student
             req.schema.Student.find({ logn: m_user, pswd: m_pswd }, function(err, students) {
                 if(students.length !== 0) {
-                    cur_user = m_user;
-                    cur_user_attr = 0;
+                    res.cookie('user', m_user, { maxAge: cookieAge });
+                    res.cookie('user_attr', '0', { maxAge: cookieAge });
                 } else {
                     loginEror = true;
                 }//if-else
@@ -36,8 +41,8 @@ module.exports = function(app) {
             // login with Teacher
             req.schema.Teacher.find({ logn: m_user, pswd: m_pswd }, function(err, teachers) {
                 if(teachers.length !== 0) {
-                    cur_user = m_user;
-                    cur_user_attr = 1;
+                    res.cookie('user', m_user, { maxAge: cookieAge });
+                    res.cookie('user_attr', '1', { maxAge: cookieAge });
                 } else {
                     loginEror = true;
                 }
@@ -53,27 +58,33 @@ module.exports = function(app) {
             return;
         }//if
         
-        console.log('Login as: ' + cur_user);
+        console.log('Login as: ' + m_user);
         res.redirect('/home');    
     });
     
     app.route('/home').get(function(req, res) {
+        console.log('cookies: ');
+        console.log(req.cookies);
+        
+        var cur_user = req.cookies.user;
+        var cur_user_attr = req.cookies.user_attr;
+        
         if(cur_user === null) {
             res.send("You're not logged in!");
-        } else if(cur_user_attr === 2) {
+        } else if(cur_user_attr === '2') {
             res.render('rootManagement');
-        } else if(cur_user_attr === 1) {
+        } else if(cur_user_attr === '1') {
             res.render('gradeManagement');
-        } else if(cur_user_attr === 0) {
+        } else if(cur_user_attr === '0') {
             res.render('courseSelection');
         } else {
-            res.send("You're not logged in!");
+            res.send("You're not logged in. Corrupted user_attr!");
         }//if-else
     });
     
     app.route('/logout').get(function(req, res) {
-        cur_user = null;
-        cur_user_attr = null;
+        res.clearCookie('user');
+        res.clearCookie('user_attr');
         res.redirect('/');
     });
     
