@@ -1,10 +1,10 @@
 doctype html
-html(lang="en" ng-app='rootManagementApp')
+html(lang='en' ng-app='rootManagementApp')
     head
         meta(charset='utf-8')
         meta(http-equiv='X-UA-Compatible' content='IE-edge')
         meta(name='viewport' content='width=device-width initial-scale=1')
-        title Welcome to Grade Manager!
+        title Welcome to Root Manager!
 
         script(type='text/javascript' src='jquery/dist/jquery.js')
         script(type='text/javascript' src='angular/angular.js')
@@ -15,27 +15,30 @@ html(lang="en" ng-app='rootManagementApp')
         script(type='text/javascript' src='js/rootManagement.js')
 
         link(rel='stylesheet' type='text/css' href='bootstrap/dist/css/bootstrap.css')
-        link(rel='stylesheet' type='text/css' href="ng-grid/ng-grid.css")
+        link(rel='stylesheet' type='text/css' href='ng-grid/ng-grid.css')
         
         link(rel='stylesheet' type='text/css' href='css/rootManagement.css')
 body
-    div(class="navbar navbar-inverse")
-        div(class="container")
-            div(class="navbar-header")
-                button(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
-                    span(class="sr-only") Toggle navigation
-                    span(class="icon-bar")
-                    span(class="icon-bar")
-                    span(class="icon-bar")
-                a(class="navbar-brand" href="/") System Index Page
-            div(class="navbar-collapse collapse")
-                ul(class="nav navbar-nav")
-                    li(class="active")
-                        a(href="/home") Home
+    div(class='navbar navbar-inverse')
+        div(class='container')
+            div(class='navbar-header')
+                button(type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse')
+                    span(class='sr-only') Toggle navigation
+                    span(class='icon-bar')
+                    span(class='icon-bar')
+                    span(class='icon-bar')
+                a(class='navbar-brand' href='/') System Index Page
+            div(class='navbar-collapse collapse')
+                ul(class='nav navbar-nav')
+                    li(class='active')
+                        a(href='/home') Home
                     li
-                        a(href="/logout") Logout
+                        a(href='/logout') Logout
     div(class='container')
-        div(ng-controller='accordionRootManageCtrl')
+        div(id='accordionRootManageCtrl_Id' ng-controller='accordionRootManageCtrl')
+            div(class='row')
+                button(type='button' ng-click='refreshData($event)' ng-init='refreshData($event)' class='btn btn-primary col-sm-offset-11 col-sm-1') Refresh
+            hr
             accordion(close-others='true')
                 accordion-group(heading='Users List')
                     h3 Students List

@@ -1,13 +1,52 @@
 doctype html
-html(lang="en")
+html(lang="en" ng-app='courseSelectionApp')
     head
         meta(charset='utf-8')
         meta(http-equiv='X-UA-Compatible' content='IE-edge')
         meta(name='viewport' content='width=device-width initial-scale=1')
-        title Fight for your courses!
+        title Welcome to Select Your Courses!
 
-        link(rel='stylesheet' href='bootstrap/dist/css/bootstrap.min.css')
-        link(rel='stylesheet' href='css/courseSelection.css')
+        script(type='text/javascript' src='jquery/dist/jquery.js')
+        script(type='text/javascript' src='angular/angular.js')
+        script(type='text/javascript' src='angular-bootstrap/ui-bootstrap-tpls.js')
+        script(type='text/javascript' src='ng-grid/ng-grid-2.0.11.min.js')
+
+        script(type='text/javascript' src='js/angular_customFilter.js')
+        script(type='text/javascript' src='js/courseSelection.js')
+
+        link(rel='stylesheet' type='text/css' href='bootstrap/dist/css/bootstrap.css')
+        link(rel='stylesheet' type='text/css' href="ng-grid/ng-grid.css")
+        
+        link(rel='stylesheet' type='text/css' href='css/courseSelection.css')
 body
-    p.
-        This is Course Selector!
+    div(class="navbar navbar-inverse")
+        div(class="container")
+            div(class="navbar-header")
+                button(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
+                    span(class="sr-only") Toggle navigation
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                a(class="navbar-brand" href="/") System Index Page
+            div(class="navbar-collapse collapse")
+                ul(class="nav navbar-nav")
+                    li(class="active")
+                        a(href="/home") Home
+                    li
+                        a(href="/logout") Logout
+    div(class='container')
+        div(id='accordionCourseSelection_Id' ng-controller='accordionCourseSelectionCtrl')
+            div(class='row')
+                button(type='button' ng-click='refreshData($event)' ng-init='refreshData($event)' class='btn btn-primary col-sm-offset-11 col-sm-1') Refresh
+            hr
+            accordion(close-others='false')
+                accordion-group(heading='OpenCourses List')
+                    h3 OpenCourses List
+                    div(class='row-fluid')
+                        div(class='span12')
+                            div(id='openCourseGrid_css' ng-grid='openCourseGridOptions')
+                accordion-group(heading='CourseSelection List')
+                    h3 CourseSelection List
+                    div(class='row-fluid')
+                        div(class='span12')
+                            div(id='courseSelectionGrid_css' ng-grid='courseSelectionGridOptions')

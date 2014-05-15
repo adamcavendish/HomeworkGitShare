@@ -16,54 +16,60 @@ var courseSelectionRemoveBtnTemplate =
 
 rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
       function($scope, $http) {
-          var getStudentsFunction = function() {
+          $scope.getStudentsFunction = function() {
               $http.get('/Student.json').success(function(data) {
                   $scope.students = data;
               });
           };
           
-          var getTeachersFunction = function() {
+          $scope.getTeachersFunction = function() {
               $http.get('/Teacher.json').success(function(data) {
                   $scope.teachers = data;
               });
           };
           
-          var getCoursesFunction = function() {
+          $scope.getCoursesFunction = function() {
               $http.get('/Course.json').success(function(data) {
                   $scope.courses = data;
               });
           };
           
-          var getCollegesFunction = function() {
+          $scope.getCollegesFunction = function() {
               $http.get('/College.json').success(function(data) {
                   $scope.colleges = data;
               });
           };
           
-          var getOpenCoursesFunction = function() {
+          $scope.getOpenCoursesFunction = function() {
               $http.get('/OpenCourse.json').success(function(data) {
                   $scope.openCourses = data;
               });
           };
           
-          var getCourseSelectionFunction = function() {
+          $scope.getCourseSelectionFunction = function() {
               $http.get('/CourseSelection.json').success(function(data) {
                   $scope.courseSelection = data;
               });
           };
           
-          getStudentsFunction();
-          getTeachersFunction();
-          getCoursesFunction();
-          getCollegesFunction();
-          getOpenCoursesFunction();
-          getCourseSelectionFunction();
+          $scope.refreshData = function(event) {
+              if(event)
+                  event.preventDefault();
+
+              $scope.getStudentsFunction();
+              $scope.getTeachersFunction();
+              $scope.getCoursesFunction();
+              $scope.getCollegesFunction();
+              $scope.getOpenCoursesFunction();
+              $scope.getCourseSelectionFunction();
+          };
           
           $scope.studentsGridOptions = {
               data: 'students',
               enableCellSelection: false,
               enableRowSelection: true,
               enableCellEdit: false,
+              multiSelect: false,
               columnDefs: [
                   {field: 'id', displayName: 'ID', enableCellEdit: false},
                   {field: 'name', displayName: 'Name', enableCellEdit: false},
@@ -81,6 +87,7 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
               enableCellSelection: false,
               enableRowSelection: true,
               enableCellEdit: false,
+              multiSelect: false,
               columnDefs: [
                   {field: 'id', displayName: 'ID', enableCellEdit: false},
                   {field: 'name', displayName: 'Name', enableCellEdit: false},
@@ -98,6 +105,7 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
               enableCellSelection: false,
               enableRowSelection: true,
               enableCellEdit: false,
+              multiSelect: false,
               columnDefs: [
                   {field: 'id', displayName: 'ID', enableCellEdit: false},
                   {field: 'name', displayName: 'Name', enableCellEdit: false},
@@ -113,6 +121,7 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
               enableCellSelection: false,
               enableRowSelection: true,
               enableCellEdit: false,
+              multiSelect: false,
               columnDefs: [
                   {field: 'id', displayName: 'ID', enableCellEdit: false},
                   {field: 'name', displayName: 'Name', enableCellEdit: false},
@@ -141,6 +150,7 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
               enableCellSelection: false,
               enableRowSelection: true,
               enableCellEdit: false,
+              multiSelect: false,
               columnDefs: [
                   {field: 'studentId', displayName: 'StudentID', enableCellEdit: false},
                   {field: 'semester', displayName: 'Semester', enableCellEdit: false},
@@ -152,16 +162,16 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
           };
           
           $scope.removeStudentRow = function() {
-              var index = this.row.rowIndex;
+              var rowData = this.row.entity;
               
               $.ajax({
                   type: 'POST',
-                  data: $scope.students[index],
+                  data: rowData,
                   url: '/delStudent_post',
                   dataType: 'JSON'
               }).done(function(response) {
                   if(response.msg === '') {
-                      getStudentsFunction();
+                      $scope.getStudentsFunction();
                   } else {
                       alert('Error: ' + response.msg);
                   }//if-else
@@ -169,16 +179,16 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
           };
           
           $scope.removeTeacherRow = function() {
-              var index = this.row.rowIndex;
+              var rowData = this.row.entity;
 
               $.ajax({
                   type: 'POST',
-                  data: $scope.teachers[index],
+                  data: rowData,
                   url: '/delTeacher_post',
                   dataType: 'JSON'
               }).done(function(response) {
                   if(response.msg === '') {
-                      getTeachersFunction();
+                      $scope.getTeachersFunction();
                   } else {
                       alert('Error: ' + response.msg);
                   }//if-else
@@ -186,16 +196,16 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
           };
           
           $scope.removeCourseRow = function() {
-              var index = this.row.rowIndex;
+              var rowData = this.row.entity;
 
               $.ajax({
                   type: 'POST',
-                  data: $scope.courses[index],
+                  data: rowData,
                   url: '/delCourse_post',
                   dataType: 'JSON'
               }).done(function(response) {
                   if(response.msg === '') {
-                      getCoursesFunction();
+                      $scope.getCoursesFunction();
                   } else {
                       alert('Error: ' + response.msg);
                   }//if-else
@@ -203,16 +213,16 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
           };
           
           $scope.removeCollegeRow = function() {
-              var index = this.row.rowIndex;
+              var rowData = this.row.entity;
 
               $.ajax({
                   type: 'POST',
-                  data: $scope.colleges[index],
+                  data: rowData,
                   url: '/delCollege_post',
                   dataType: 'JSON'
               }).done(function(response) {
                   if(response.msg === '') {
-                      getCollegesFunction();
+                      $scope.getCollegesFunction();
                   } else {
                       alert('Error: ' + response.msg);
                   }//if-else
@@ -220,16 +230,16 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
           };
           
           $scope.removeOpenCourseRow = function() {
-              var index = this.row.rowIndex;
+              var rowData = this.row.entity;
 
               $.ajax({
                   type: 'POST',
-                  data: $scope.openCourses[index],
+                  data: rowData,
                   url: '/delOpenCourse_post',
                   dataType: 'JSON'
               }).done(function(response) {
                   if(response.msg === '') {
-                      getOpenCoursesFunction();
+                      $scope.getOpenCoursesFunction();
                   } else {
                       alert('Error: ' + response.msg);
                   }//if-else
@@ -237,16 +247,16 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
           };
           
           $scope.removeCourseSelectionRow = function() {
-              var index = this.row.rowIndex;
+              var rowData = this.row.entity;
 
               $.ajax({
                   type: 'POST',
-                  data: $scope.courseSelection[index],
+                  data: rowData,
                   url: '/delCourseSelection_post',
                   dataType: 'JSON'
               }).done(function(response) {
                   if(response.msg === '') {
-                      getCourseSelectionFunction();
+                      $scope.getCourseSelectionFunction();
                   } else {
                       alert('Error: ' + response.msg);
                   }//if-else
@@ -261,7 +271,7 @@ function AddStudent_btnClick() {
     // Super basic validation - increase errorCount variable if any fields are blank
     var errorCount = 0;
     $('#AddStudent_form input').each(function(index, val) {
-        if($(this).val() === '')
+        if($(this).val() === '' && $(this).attr('type') !== 'radio')
             errorCount++;
     });
     
@@ -284,6 +294,7 @@ function AddStudent_btnClick() {
         }).done(function(response) {
             if (response.msg === '') {
                 $('#AddStudent_form input').val('');
+                angular.element('#accordionRootManageCtrl_Id').scope().getStudentsFunction();
             } else {
                 alert('Error: ' + response.msg);
             }//if-else
@@ -299,7 +310,7 @@ function AddTeacher_btnClick() {
     // Super basic validation - increase errorCount variable if any fields are blank
     var errorCount = 0;
     $('#AddTeacher_form input').each(function(index, val) {
-        if($(this).val() === '')
+        if($(this).val() === '' && $(this).attr('type') !== 'radio')
             errorCount++;
     });
 
@@ -322,6 +333,7 @@ function AddTeacher_btnClick() {
         }).done(function(response) {
             if (response.msg === '') {
                 $('#AddTeacher_form input').val('');
+                angular.element('#accordionRootManageCtrl_Id').scope().getTeachersFunction();
             } else {
                 alert('Error: ' + response.msg);
             }//if-else
@@ -337,7 +349,7 @@ function AddCourse_btnClick() {
     // Super basic validation - increase errorCount variable if any fields are blank
     var errorCount = 0;
     $('#AddCourse_form input').each(function(index, val) {
-        if($(this).val() === '')
+        if($(this).val() === '' && $(this).attr('type') !== 'radio')
             errorCount++;
     });
 
@@ -358,6 +370,7 @@ function AddCourse_btnClick() {
         }).done(function(response) {
             if (response.msg === '') {
                 $('#AddCourse_form input').val('');
+                angular.element('#accordionRootManageCtrl_Id').scope().getCoursesFunction();
             } else {
                 alert('Error: ' + response.msg);
             }//if-else
@@ -373,7 +386,7 @@ function AddCollege_btnClick() {
     // Super basic validation - increase errorCount variable if any fields are blank
     var errorCount = 0;
     $('#AddCollege_form input').each(function(index, val) {
-        if($(this).val() === '')
+        if($(this).val() === '' && $(this).attr('type') !== 'radio')
             errorCount++;
     });
 
@@ -393,6 +406,7 @@ function AddCollege_btnClick() {
         }).done(function(response) {
             if (response.msg === '') {
                 $('#AddCollege_form input').val('');
+                angular.element('#accordionRootManageCtrl_Id').scope().getCollegesFunction();
             } else {
                 alert('Error: ' + response.msg);
             }//if-else
@@ -408,7 +422,7 @@ function AddOpenCourse_btnClick() {
     // Super basic validation - increase errorCount variable if any fields are blank
     var errorCount = 0;
     $('#AddOpenCourse_form input').each(function(index, val) {
-        if($(this).val() === '')
+        if($(this).val() === '' && $(this).attr('type') !== 'radio')
             errorCount++;
     });
 
@@ -428,6 +442,7 @@ function AddOpenCourse_btnClick() {
         }).done(function(response) {
             if (response.msg === '') {
                 $('#AddOpenCourse_form input').val('');
+                angular.element('#accordionRootManageCtrl_Id').scope().getOpenCoursesFunction();
             } else {
                 alert('Error: ' + response.msg);
             }//if-else
@@ -443,7 +458,7 @@ function AddCourseSelection_btnClick() {
     // Super basic validation - increase errorCount variable if any fields are blank
     var errorCount = 0;
     $('#AddCourseSelection_form input').each(function(index, val) {
-        if($(this).val() === '')
+        if($(this).val() === '' && $(this).attr('type') !== 'radio')
             errorCount++;
     });
 
@@ -465,6 +480,7 @@ function AddCourseSelection_btnClick() {
         }).done(function(response) {
             if (response.msg === '') {
                 $('#AddCourseSelection_form input').val('');
+                angular.element('#accordionRootManageCtrl_Id').scope().getCourseSelectionFunction();
             } else {
                 alert('Error: ' + response.msg);
             }//if-else
