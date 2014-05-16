@@ -1,4 +1,5 @@
 // router.js
+var mongoose = require('mongoose');
 
 // user_attr: 2 for root, 1 for teacher, 0 for student
 
@@ -315,20 +316,32 @@ module.exports = function(app) {
     // ----------------CourseSelection-----------------
     app.route('/CourseSelection.json').get(function(req, res) {
         var cur_user = req.cookies.user;
+        var cur_user_attr = req.cookies.user_attr;
+        
         if(cur_user === null || cur_user === undefined) {
             console.log('Not logged in, get /CourseSelection.json failed!');
             res.end();
             return;
-        }//if
-        
-        if(cur_user === 'root') {
+        } else if(cur_user_attr == 2) {
+            // root
             req.schema.CourseSelection.find(function(err, courseSelection) {
                 res.json(courseSelection);
             });
-        } else {
+        } else if(cur_user_attr == 1) {
+            // teacher
+            req.schema.CourseSelection.find({'teacherId': cur_user}, function(err, courseSelection) {                
+                res.json(courseSelection);
+                return;
+            });
+        } else if(cur_user_attr == 0) {
             req.schema.CourseSelection.find({'studentId': cur_user}, function(err, courseSelection) {
                 res.json(courseSelection);
+                return;
             });
+        } else {
+            console.log('corrupted user attr: ' + JSON.stringify(cur_user_attr));
+            res.end();
+            return;
         }//if-else
     });
 
@@ -398,6 +411,40 @@ module.exports = function(app) {
         }, function(error, result) {
             res.json((error == null) ? { msg: '' } : { msg: error });
         });
+    });
+    
+    app.route('/updateCourseSelection_post').post(function(req, res) {
+        var cur_user = req.cookies.user;
+        var cur_user_attr = req.cookies.user_attr;
+        
+        var reqData = req.body;
+        
+        if(cur_user_attr == 2) {
+            // root
+            console.log('root is granted the right, however root doesn\'t have a form to post this data. Are you hacking me?');
+            res.end();
+        } else if(cur_user_attr == 1) {
+            // teacher
+            console.log('Trying to update score to: ');
+            console.log(reqData);
+            req.schema.CourseSelection.update(
+                {_id: mongoose.Types.ObjectId(reqData._id)},
+                {$set: {overallScore: reqData.overallScore}},
+                { multi: false },
+                function(error, numAffected) {
+                    console.log('update num affected: ' + JSON.stringify(numAffected));
+                    res.json((error === null) ? {msg: ''} : {msg: error});
+                    return;
+                });
+        } else if(cur_user_attr == 0) {
+            // student
+            console.log('You\'re a student. permission denied!');
+            res.end();
+        } else {
+            console.log('corrupted user attr: ' + JSON.stringify(cur_user_attr));
+            res.json({msg: 'corrupted user attr!'});
+            return;
+        }
     });
 }
 
