@@ -91,6 +91,7 @@ gradeManagementApp.controller('accordionGradeManagementCtrl', ['$scope', '$http'
                     $scope.getCourseSelectionFunction();
                 } else {
                     alert('Error: ' + JSON.stringify(response.msg));
+                    console.error('Error: ' + JSON.stringify(response.msg));
                 }//if-else
             });
         }

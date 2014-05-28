@@ -77,7 +77,8 @@ courseSelectionApp.controller('accordionCourseSelectionCtrl', ['$scope', '$http'
                 if (response.msg === '') {
                     $scope.getCourseSelectionFunction();
                 } else {
-                    alert('Error: ' + response.msg);
+                    alert('Error: ' + JSON.stringify(response.msg));
+                    console.error('Error: ' + JSON.stringify(response.msg));
                 }//if-else
             });
         };
@@ -94,8 +95,9 @@ courseSelectionApp.controller('accordionCourseSelectionCtrl', ['$scope', '$http'
                 if(response.msg === '') {
                     $scope.getCourseSelectionFunction();    
                 } else {
-                    alert('Error: ' + response.msg);
-                }//if-else
+                    alert('Error: ' + JSON.stringify(response.msg));
+                    console.error('Error: ' + JSON.stringify(response.msg));
+                }
             });
         };
     }]);
@@ -128,6 +130,7 @@ function AddCourseSelection_btnClick() {
                 angular.element('#accordionCourseSelection_Id').scope().getCourseSelectionFunction();
             } else {
                 alert('Error: ' + response.msg);
+                console.error('Error: ' + response.msg);
             }//if-else
         });
     } else {

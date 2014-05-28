@@ -173,7 +173,8 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
                   if(response.msg === '') {
                       $scope.getStudentsFunction();
                   } else {
-                      alert('Error: ' + response.msg);
+                      alert('Error: ' + JSON.stringify(response.msg));
+                      console.error('Error: ' + JSON.stringify(response.msg));
                   }//if-else
               });
           };
@@ -190,7 +191,8 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
                   if(response.msg === '') {
                       $scope.getTeachersFunction();
                   } else {
-                      alert('Error: ' + response.msg);
+                      alert('Error: ' + JSON.stringify(response.msg));
+                      console.error('Error: ' + JSON.stringify(response.msg));
                   }//if-else
               });
           };
@@ -207,7 +209,8 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
                   if(response.msg === '') {
                       $scope.getCoursesFunction();
                   } else {
-                      alert('Error: ' + response.msg);
+                      alert('Error: ' + JSON.stringify(response.msg));
+                      console.error('Error: ' + JSON.stringify(response.msg));
                   }//if-else
               });
           };
@@ -224,7 +227,8 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
                   if(response.msg === '') {
                       $scope.getCollegesFunction();
                   } else {
-                      alert('Error: ' + response.msg);
+                      alert('Error: ' + JSON.stringify(response.msg));
+                      console.error('Error: ' + JSON.stringify(response.msg));
                   }//if-else
               });
           };
@@ -241,7 +245,8 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
                   if(response.msg === '') {
                       $scope.getOpenCoursesFunction();
                   } else {
-                      alert('Error: ' + response.msg);
+                      alert('Error: ' + JSON.stringify(response.msg));
+                      console.error('Error: ' + JSON.stringify(response.msg));
                   }//if-else
               });
           };
@@ -258,7 +263,8 @@ rootManagementApp.controller('accordionRootManageCtrl', ['$scope', '$http',
                   if(response.msg === '') {
                       $scope.getCourseSelectionFunction();
                   } else {
-                      alert('Error: ' + response.msg);
+                      alert('Error: ' + JSON.stringify(response.msg));
+                      console.error('Error: ' + JSON.stringify(response.msg));
                   }//if-else
               });
           };
@@ -296,7 +302,7 @@ function AddStudent_btnClick() {
                 $('#AddStudent_form input').val('');
                 angular.element('#accordionRootManageCtrl_Id').scope().getStudentsFunction();
             } else {
-                alert('Error: ' + response.msg);
+                alert('Error: ' + JSON.stringify(response.msg));
             }//if-else
         });
     } else {
@@ -336,6 +342,7 @@ function AddTeacher_btnClick() {
                 angular.element('#accordionRootManageCtrl_Id').scope().getTeachersFunction();
             } else {
                 alert('Error: ' + response.msg);
+                console.error('Error: ' + JSON.stringify(response.msg));
             }//if-else
         });
     } else {
@@ -372,7 +379,8 @@ function AddCourse_btnClick() {
                 $('#AddCourse_form input').val('');
                 angular.element('#accordionRootManageCtrl_Id').scope().getCoursesFunction();
             } else {
-                alert('Error: ' + response.msg);
+                alert('Error: ' + JSON.stringify(response.msg));
+                console.error('Error: ' + JSON.stringify(response.msg));
             }//if-else
         });
     } else {
@@ -408,7 +416,8 @@ function AddCollege_btnClick() {
                 $('#AddCollege_form input').val('');
                 angular.element('#accordionRootManageCtrl_Id').scope().getCollegesFunction();
             } else {
-                alert('Error: ' + response.msg);
+                alert('Error: ' + JSON.stringify(response.msg));
+                console.error('Error: ' + JSON.stringify(response.msg));
             }//if-else
         });
     } else {
@@ -444,7 +453,8 @@ function AddOpenCourse_btnClick() {
                 $('#AddOpenCourse_form input').val('');
                 angular.element('#accordionRootManageCtrl_Id').scope().getOpenCoursesFunction();
             } else {
-                alert('Error: ' + response.msg);
+                alert('Error: ' + JSON.stringify(response.msg));
+                console.error('Error: ' + JSON.stringify(response.msg));
             }//if-else
         });
     } else {
@@ -482,7 +492,8 @@ function AddCourseSelection_btnClick() {
                 $('#AddCourseSelection_form input').val('');
                 angular.element('#accordionRootManageCtrl_Id').scope().getCourseSelectionFunction();
             } else {
-                alert('Error: ' + response.msg);
+                alert('Error: ' + JSON.stringify(response.msg));
+                console.error('Error: ' + JSON.stringify(response.msg));
             }//if-else
         });
     } else {
