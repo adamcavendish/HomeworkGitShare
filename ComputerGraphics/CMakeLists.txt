@@ -5,6 +5,7 @@ message(STATUS "Project: " ${PROJECT_NAME})
 message(STATUS "PROJECT_SOURCE_DIR: " ${PROJECT_SOURCE_DIR})
 
 find_package(OpenGL REQUIRED)
+find_package(Freetype REQUIRED)
 
 # Linking libraries
 set(CUSTOM_LIBRARY
@@ -38,4 +39,5 @@ add_subdirectory(Common)
 add_subdirectory(000FirstWindow)
 add_subdirectory(001Triangle)
 add_subdirectory(002Sierpinski2D)
+add_subdirectory(SchoolHomework)
 

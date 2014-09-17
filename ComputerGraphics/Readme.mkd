@@ -4,4 +4,5 @@ OpenGL 3.3+ -- for rendering using OpenGL
 GLFW v3.0.4 -- for window and input handler
 GLEW v1.11 -- for OpenGL Extensions and new features
 GLM v0.9.5.4 -- for OpenGL Math stuffs
+Freetype 2.5.2 -- for OpenGL Text Rendering
 

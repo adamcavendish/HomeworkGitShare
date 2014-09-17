@@ -5,42 +5,19 @@
 // OpenGL
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <glm/vec2.hpp>
 // Current Project
 #include "Common/shaders.hpp"
 
-const int NumPoints = 102400;
+GLuint vertexArrayID;
 GLuint programID;
 GLuint vertexBuffer;
 GLuint loc_vPosition;
 
-void init() {
-    // random seed
-    std::srand(21);
+std::vector<glm::vec2> points;
 
+void init() {
 	// Dark blue background
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
-
-    // sierpoinski points
-    glm::vec2 points[NumPoints];
-    glm::vec2 vertices[] = {
-        glm::vec2(-1.0, -1.0),
-        glm::vec2( 0.0,  1.0),
-        glm::vec2( 1.0, -1.0)
-    };
-
-    // choose a random point inside triangle
-    points[0] = glm::vec2(0.25, 0.50);
-
-    // calculate n-1 points
-    for(int i = 1; i < NumPoints; ++i) {
-        // randomly choose a vertex
-        int vertexChosen = std::rand() % 3;
-
-        // calculate the center between
-        // the chosen vertex and the previous vertex
-        points[i] = (points[i-1] + vertices[vertexChosen]) / glm::vec2(2.0, 2.0);
-    }//for
 
 	// Create and compile our GLSL program from the shaders
 	programID = loadShaders("vshader.glsl", "fshader.glsl");
@@ -55,7 +32,8 @@ void init() {
     // Vertex Buffer Object
 	glGenBuffers(1, &vertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, points.size() * sizeof(glm::vec2),
+            points.data(), GL_STATIC_DRAW);
 
     // enable vertex array, and initialize it
     loc_vPosition = glGetAttribLocation(programID, "vPosition");
@@ -74,7 +52,7 @@ void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Draw points
-    glDrawArrays(GL_POINTS, 0, NumPoints); // 3 indices starting at 0 -> 1 triangle
+    glDrawArrays(GL_POINTS, 0, points.size());
 
     glFlush();
 }//display()
@@ -83,15 +61,50 @@ void update() {
 }//update()
 
 void cleanup() {
+    // Cleanup VAO, VBO and shaders
+    glDeleteProgram(programID);
+    glDeleteVertexArrays(1, &vertexArrayID);
+    glDeleteBuffers(1, &vertexBuffer);
+
     glDisableVertexAttribArray(loc_vPosition);
 }//cleanup()
+
+void keyCallback(GLFWwindow * window, int key, int scancode, int action, int mods) {
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, GL_TRUE);
+}//keyCallback(window, key, scancode, action, mods)
+
+void mouseCallback(GLFWwindow * window, int button, int action, int mods) {
+    if(button == GLFW_MOUSE_BUTTON_LEFT) {
+        if(action == GLFW_PRESS) {
+            // left button pressed
+        } else if(action == GLFW_RELEASE) {
+            // left button released
+        }//if-else
+    } else if (button == GLFW_MOUSE_BUTTON_RIGHT) {
+        if(action == GLFW_PRESS) {
+            // right button pressed
+        } else if(action == GLFW_RELEASE) {
+            // right button released
+        }//if-else
+    } else {
+        // ...
+    }//if-else
+}//mouseCallback(window, button, action, mods)
+
+void errorCallback(int error, const char * description) {
+    std::cerr
+        << "error code: " << error
+        << " info: " << description
+        << std::endl;
+}//errorCallback(error, description)
 
 int main(int argc, char * argv[])
 {
     // Initialize the library
     if (!glfwInit()) {
         std::cerr << "Failed to initialize GLFW!\n";
-        return -1;
+        std::exit(EXIT_FAILURE);
     }//if
 
     // OpenGL 3.3+
@@ -105,11 +118,17 @@ int main(int argc, char * argv[])
     if(!window) {
         std::cerr << "Failed to open GLFW Window!\n";
         glfwTerminate();
-        return -1;
+        std::exit(EXIT_FAILURE);
     }//if
 
+    // Error callback for processing error events
+    glfwSetErrorCallback(errorCallback);
     // Make the window's context current
     glfwMakeContextCurrent(window);
+    // Key callback for keyboard input
+    glfwSetKeyCallback(window, keyCallback);
+    // Mouse callback for mouse input
+    glfwSetMouseButtonCallback(window, mouseCallback);
 
 	// Initialize GLEW
 	if(glewInit() != GLEW_OK) {
@@ -118,13 +137,10 @@ int main(int argc, char * argv[])
 		return -1;
 	}//if
 
-	// Ensure we can capture the escape key being pressed below
-	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
-
     init();
 
     // Loop until the user closes the window
-    while(!glfwWindowShouldClose(window) && glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
+    while(!glfwWindowShouldClose(window)) {
 
         display();
 
@@ -138,8 +154,10 @@ int main(int argc, char * argv[])
     }//while
 
     cleanup();
+
+    glfwDestroyWindow(window);
     glfwTerminate();
 
-    return 0;
+    std::exit(EXIT_SUCCESS);
 }//main
 
