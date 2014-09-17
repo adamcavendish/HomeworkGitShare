@@ -18,7 +18,7 @@ void init() {
 	glBindVertexArray(vertexArrayID);
 
 	// Create and compile our GLSL program from the shaders
-	programID = loadShaders("vshader.glsl", "fshader.glsl");
+	programID = loadShaders("shaders/vshader.glsl", "shaders/fshader.glsl");
 
 	static const GLfloat vertexBufferData[] = { 
 		-1.0f, -1.0f, 0.0f,

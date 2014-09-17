@@ -43,7 +43,7 @@ void init() {
     }//for
 
 	// Create and compile our GLSL program from the shaders
-	programID = loadShaders("vshader.glsl", "fshader.glsl");
+	programID = loadShaders("shaders/vshader.glsl", "shaders/fshader.glsl");
     // Use our shader
     glUseProgram(programID);
 
