@@ -11,6 +11,11 @@ lineDDA(const glm::vec2 & start, const glm::vec2 & end, float deltaPixel) {
     float dx = end.x - start.x;
     float dy = end.y - start.y;
 
+    if(dx == 0 && dy == 0) {
+        // empty list
+        return { start };
+    }//if
+
     if(dx == 0) {
         return drawLineVertical(start, end, deltaPixel);
     }//if
