@@ -30,7 +30,7 @@ int kmp(const char * str, const char * pattern)
 	int str_len = strlen(str);
 	int pat_len = strlen(pattern);
 
-	int * fail = new int[pat_len];
+	int * fail = new int[pat_len+1];
 
 	preprocess(pattern, pat_len, fail);
 
@@ -49,7 +49,7 @@ int kmp(const char * str, const char * pattern)
 		}//if-else
 	}//while
 	
-	delete fail;
+	delete[] fail;
 	return str_len;
 }//kmp(str, pattern)
 
@@ -59,7 +59,7 @@ int kmp2(const char * str, const char * pattern)
 	int str_len = strlen(str);
 	int pat_len = strlen(pattern);
 
-	int * fail = new int[pat_len];
+	int * fail = new int[pat_len+1];
 
 	preprocess(pattern, pat_len, fail);
 
@@ -78,7 +78,7 @@ int kmp2(const char * str, const char * pattern)
 		pos = -1;
 	}//if-else
 
-	delete fail;
+	delete[] fail;
 	return pos;
 }//kmp(str, pattern)
 
