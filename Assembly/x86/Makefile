@@ -13,7 +13,7 @@ LIB += "/lib32/ld-linux.so.2"
 LIB += "/usr/lib32/libc.so"
 
 all:
-	make -C ../../adamcavendish/
+	make -C ../adamcavendish/
 	
 	as --32 $(FLAG) -I$(INCLUDE) -o $(file1).o $(file1).s
 	ld -o $(file1)$(SUFFIX) $(file1).o --dynamic-linker $(LIB)
